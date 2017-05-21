@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid home_jumbotron" >
+    <div class="container">
+        <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Bridging the gap between the informal sector and the employers. </h1>
+
+        <!--<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
+        <p class="lead" style="text-align: center; margin-top: 60px">
+            <a style="color: #2f5597;"  href="#" >SEE HOW WE WORK <i class="fa fa-arrow-circle-right"></i></a>
+        </p>
+    </div>
+</div>
+
+<div class="container" style="margin-bottom: 60px">
+
+    <div class="col-lg-12 text-center" style="padding: 20px; margin-top: 60px; margin-bottom: 60px;">
+
+        <h1 style="margin-bottom: 60px; font-weight: 300">How we work</h1>
+
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <img class="img-fluid" style="padding: 20px" src="/ajira_static/images/home_icons/how_we_work/worker%20(2).png"/>
+                <h3>Discover</h3>
+                <p>Browse through the profiles</p>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <img class="img-fluid" style="padding: 20px" src="/ajira_static/images/home_icons/how_we_work/interview.png"/>
+                <h3>Interview</h3>
+                <p>Interview your shortlisted candidates.</p>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <img class="img-fluid" style="padding: 20px" src="/ajira_static/images/home_icons/how_we_work/handshake.png"/>
+                <h3>Hire</h3>
+                <p>Hire the domestic woker.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12" style="margin-bottom: 60px">
+        <h1 class="text-center" style="margin-bottom: 60px; font-weight: 300">Our Objectives</h1>
+        <div class="row ajira-objectives">
+            <div class="col-lg-6 ajira-objectives-text">
+                <h2>To provide domestic workers an online platform where they can have a profile displaying their skills, experience and recommendations.</h2>
+                <p>Scott is a web developer who has been blogging at http://hanselman.com for over a decade. He works in Open Source on ASP.NET and the Azure Cloud for Microsoft out of his home office in Portland, Oregon. Scott has three podcasts, http://hanselminutes.com for tech talk, http://thisdeveloperslife.com on developers' lives and loves, and http://ratchetandthegeek.com for pop culture and tech media. He's written a number of books and spoken in person to almost a half million developers worldwide.</p>
+                <a style="color: #2f5597; text-transform: uppercase; font-weight: 600" href="#" >Apply to be get a profile <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+            <div class="col-lg-6 img-right">
+                <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="row ajira-objectives">
+            <div class="col-lg-6 img-left">
+                <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+            </div>
+            <div class="col-lg-6 ajira-objectives-text">
+                <h2>To provide employers with an online platform where they can register look at domestic worker profiles and select the one of choice.</h2>
+                <p>Scott is a web developer who has been blogging at http://hanselman.com for over a decade. He works in Open Source on ASP.NET and the Azure Cloud for Microsoft out of his home office in Portland, Oregon. Scott has three podcasts, http://hanselminutes.com for tech talk, http://thisdeveloperslife.com on developers' lives and loves, and http://ratchetandthegeek.com for pop culture and tech media. He's written a number of books and spoken in person to almost a half million developers worldwide.</p>
+                <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#" >Hire a domestic worker <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="row ajira-objectives">
+            <div class="col-lg-6 ajira-objectives-text">
+                <h2>To provide a platform that employers can recommend their former employees (domestic workers).</h2>
+                <p>Scott is a web developer who has been blogging at http://hanselman.com for over a decade. He works in Open Source on ASP.NET and the Azure Cloud for Microsoft out of his home office in Portland, Oregon. Scott has three podcasts, http://hanselminutes.com for tech talk, http://thisdeveloperslife.com on developers' lives and loves, and http://ratchetandthegeek.com for pop culture and tech media. He's written a number of books and spoken in person to almost a half million developers worldwide.</p>
+                <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#" >Recommend a previous worker <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+            <div class="col-lg-6 img-right">
+                <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12" style="margin-bottom: 60px; margin-top: 60px">
+        <h1 class="text-center" style="margin-bottom: 60px; font-weight: 300">Join Us</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h3 class="card-title">Want to Employee?</h3>
+                        <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                        <a href="{% url 'employer_reg' %}" class="btn btn-primary" style="background-color: #2f5597;">Register to be an Ajiriwa</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center" >
+                    <div class="card-block">
+                        <h3 class="card-title">Want a Domestic Worker?</h3>
+                        <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                        <a href="{% url 'ajiriwa_reg' %}" class="btn btn-primary" style="background-color: #2f5597;">Register as an Employer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

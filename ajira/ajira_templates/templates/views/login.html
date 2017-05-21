@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Log In
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Log in to your Member Account</h1>
+
+            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">
+                Not yet registered as an Ajiriwa? <a href="domestic_workers/employee_registration.html">Register as a Ajiriwa</a>
+            </h1>
+            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 20px">
+                Looking to be an Ajira Client? <a href="employers/client_registration.html">Register as a Client</a>
+            </h1>
+
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="col-md-12" style="margin-bottom: 60px">
+            <div class="row">
+                <div class="offset-md-1 col-md-10">
+                    <div class="card" style="padding: 20px">
+                        <div class="card-header">
+                            <h2 style="font-weight: 300; margin-bottom: 40px">Log In</h2>
+                        </div>
+                        <div class="card-block">
+
+                            <form>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="emailAddress">Please enter your email address:</label>
+                                    <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="inputPassword">Please enter your password:</label>
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Log In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

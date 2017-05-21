@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Employer Reg
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Register as a Client</h1>
+
+            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">
+                Already registered as an Ajira Client? <a href="{% url 'index' %}">Sign in</a>
+            </h1>
+            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 20px">
+                Looking to be an Ajiriwa? <a href="{% url 'ajiriwa_reg' %}">Register as an Ajiriwa</a>
+            </h1>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-md-12" style="margin-bottom: 60px">
+            <div class="row">
+                <div class="offset-md-1 col-md-10">
+                    <div class="card" style="padding: 20px">
+            <div class="card-header">
+                <h2 style="font-weight: 300; margin-bottom: 40px">Create a Client Account</h2>
+            </div>
+            <div class="card-block">
+
+                <form>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="emailAddress">Please enter your email address:</label>
+                        <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="firstName">Please enter your first name:</label>
+                        <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="lastName">Please enter your first name:</label>
+                        <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="inputPassword">Please enter your password:</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="retypedPassword">Please re-enter your password:</label>
+                        <input type="password" class="form-control" id="retypedPassword" placeholder="Re-Type Password">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="inputTown">Please enter your town:</label>
+                        <input type="text" class="form-control" id="inputTown" aria-describedby="emailHelp" placeholder="Town">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="selectCounty">Select your County:</label>
+                        <select class="form-control" id="selectCounty">
+                            <option>Select your County</option>
+                            <option>Nairobi County</option>
+                            <option>Kirinyaga County</option>
+                            <option>Kajiado County</option>
+                            <option>Siaya County</option>
+                            <option>Mombasa County</option>
+                            <option>Kericho County</option>
+                            <option>Uasin Gishu County</option>
+                            <option>Nyeri County</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="postalCode">Please enter your postal code.:</label>
+                        <input type="text" class="form-control" id="postalCode" aria-describedby="emailHelp" placeholder="Postal Code">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 18px" for="phoneNumber">Please provide a primary contact # (mobile or home phone):</label>
+                        <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp" placeholder="Primary Contact Number">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="">
+                            I have read and accepted the Ajira &nbsp; <a href="#"> Membership Agreement.</a>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Register</a>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

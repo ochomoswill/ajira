@@ -40,8 +40,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ajiriwa',
-    'mwajiri',
+    'ajira_ajiriwa',
+    'ajira_mwajiri',
+    'ajira_jobs',
+    'ajira_templates',
+    'ajira_parameters',
+    'ajira_recommendations',
+
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,4 +117,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'ajira_static'),
+)
+
+STATIC_URL = '/ajira_static/'
+
+#setting up the media file
+MEDIA_ROOT = os.path.join(BASE_DIR, 'ajira_media')
+MEDIA_URL = '/ajira_media/'
+
+
+#Sendgrip
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = "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"
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True

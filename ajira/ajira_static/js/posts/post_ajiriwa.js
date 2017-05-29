@@ -3,7 +3,7 @@
  */
 
 var loader = ""+
-    "<div class='alert alert-info alert-dismissible fade show' role='alert'>" +
+    "<div style='color:white' class='alert alert-info alert-dismissible fade show' role='alert'>" +
         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>" +
         "<span aria-hidden='true'>&times;</span>" +
         "</button>" +
@@ -14,7 +14,7 @@ var loader = ""+
 function alert(message) {
 
     var alert_message = "" +
-        "<div class='alert alert-success alert-dismissible fade show' role='alert'>" +
+        "<div style='color:white' class='alert alert-success alert-dismissible fade show' role='alert'>" +
         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>" +
         "<span aria-hidden='true'>&times;</span>" +
         "</button>" +
@@ -53,7 +53,7 @@ function post(data, url) {
     // Only send the token to relative URLs i.e. locally.
     request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     request.onreadystatechange = function() {
-        console.log("request.readyState = "+ request.readyState +"request.status = "+ request.status )
+        console.log("request.readyState = "+ request.readyState +"request.status = "+ request.status );
         if(request.readyState == 4 && request.status == 200) {
 
             var obj = JSON.parse(request.responseText);
@@ -90,7 +90,6 @@ function reg_ajiriwa(){
 
 
     /* ENTERED FIELD DATA */
-
     var email_address = document.getElementById("emailAddress").value;
     var atpos = email_address.indexOf("@");
     var dotpos = email_address.lastIndexOf(".");
@@ -213,25 +212,19 @@ function reset_ajiriwa_registration_form()
 
     document.getElementById("retypedPassword").value = "";
 
-    /*getting the landlord name from dropdown list*/
+    /*getting the constituency from dropdown list*/
     var selectConstituencyObj = document.getElementById("selectConstituency");
-    //selectConstituencyObj.options[selectConstituencyObj.selectedIndex].value = "INIT";
     selectConstituencyObj.value = "INIT";
 
-    /*getting the landlord name from dropdown list*/
+    /*getting the county from dropdown list*/
     var selectCountyObj = document.getElementById("selectCounty");
-    //selectCountyObj.options[selectCountyObj.selectedIndex].value = "INIT";
     selectCountyObj.value = "INIT";
 
-    /*getting the country from dropdown list*/
+    /*getting the skills from dropdown list*/
     var selectSkillObj = document.getElementById("selectSkill");
-    //selectSkillObj.options[selectSkillObj.selectedIndex].value = "INIT";
     selectSkillObj.value = "INIT";
 
     document.getElementById("phoneNumber").value = "";
 
     document.getElementById("terms_conditions").checked = false;
-
-
-    /* END OF ENTERED FIELD DATA */
 }

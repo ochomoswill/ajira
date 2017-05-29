@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Make Recommendation
+
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Make Recommendation</h1>
+
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="col-md-12" style="margin-bottom: 60px">
+            <div class="row">
+                <div class="offset-md-1 col-md-10">
+                    <div class="card" style="padding: 20px">
+                        <div class="card-header">
+                            <h2 style="font-weight: 300; margin-bottom: 40px">Make Recommendation Form</h2>
+                        </div>
+                        <div class="card-block">
+
+                            <div id="message"></div>
+                            <div id="update_message"></div>
+
+                            <form method="post">
+                                {% csrf_token %}
+                                <div id="divJobTitle" class="form-group">
+                                    <label style="font-size: 18px" for="jobTitle">Position or Skills:</label>
+                                    <input type="text" class="form-control" id="jobTitle" placeholder="Job Title">
+                                    <div id="jobTitle_validate_text" class="form-control-feedback"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="relationship">Relationship:</label>
+                                    <input type="text" class="form-control" id="relationship" placeholder="relationship">
+                                </div>
+                                <div id="divEmployerID" class="form-group">
+                                    <label style="font-size: 18px" for="employerID">Employer ID:</label>
+                                    <input type="number" class="form-control" id="employerID" placeholder="Employer ID">
+                                </div>
+                                <div id="divWorkerName" class="form-group">
+                                    <label style="font-size: 18px" for="workerName">Worker Name:</label>
+                                    <input type="text" class="form-control" id="workerName" placeholder="Worker Name">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="remark">Remark:</label>
+                                    <textarea class="form-control" id="remark"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="tag">Tag:</label>
+                                    <input type="text" class="form-control" id="tag" placeholder="Tag">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                                <a href="#" id="submit_btn" onclick="" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Recommend</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

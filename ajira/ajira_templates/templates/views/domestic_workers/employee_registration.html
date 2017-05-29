@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label style="font-size: 18px" for="birthDate">Year of birth:</label>
-                                    <input type="date" class="form-control" id="birthDate" placeholder="Year of Birth">
+                                    <input type="date" class="form-control" value="2011-08-19" id="birthDate" placeholder="2011-08-19">
                                 </div>
                                 <div id="divInputPassword" class="form-group">
                                     <label style="font-size: 18px" for="inputPassword">Password:</label>
@@ -105,19 +105,25 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+
                                     <label style="font-size: 18px" for="phoneNumber">Phone Number:</label>
-                                    <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">+254</span>
+                                        <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" aria-describedby="basic-addon1">
+                                    </div>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input class="form-check-input" id="terms_conditions" type="checkbox" value="">
                                         I have read and accept the Ajira &nbsp; <a href="#"> Membership Agreement.</a>
+
                                     </label>
+                                    <div id="terms_conditions_validate_text" class="form-control-feedback"></div>
                                 </div>
                             </form>
                         </div>
                         <div class="card-footer">
-                                <a href="#" onclick="reg_ajiriwa()" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Register</a>
+                                <a href="#" id="submit_btn" onclick="reg_ajiriwa()" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Register</a>
                         </div>
                     </div>
                 </div>

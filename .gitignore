@@ -1,4 +1,6 @@
+readme.txt
 envProject
 *.DS_Store
 *.pyc
 __pycache__
+sendgrid.env

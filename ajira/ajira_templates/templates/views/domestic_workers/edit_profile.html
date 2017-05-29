@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<script src="{% static 'js/posts/post_ajiriwa.js' %}"></script>
+
+{% block title %}
+    Edit Profile
+
+{% endblock %}
+
+
+{% block content %}
+
+    <script src="{% static 'js/posts/post_ajiriwa.js' %}"></script>
+
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Edit Profile</h1>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+    <div class="card" style="margin-bottom: 60px">
+        <div class="card-header">
+
+          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#profilePhoto" role="tab" aria-controls="home">Change Profile Photo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#editProfile" role="tab" aria-controls="profile">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#addExperience" role="tab" aria-controls="profile">Add Experience</a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="card-block">
+          <!--###############################################################################################################################################################################################################-->
+        <!--     AJIRIWA TAB       -->
+        <!--###############################################################################################################################################################################################################-->
+        <div class="tab-content">
+            <div class="tab-pane active" id="profilePhoto" role="tabpanel">
+
+
+                <div class="container">
+                    <div class="card" style="padding: 20px">
+                        <div class="card-header">
+                            <h2 style="font-weight: 300; margin-bottom: 40px">Change Profile Photo</h2>
+                        </div>
+                        <div class="card-block">
+
+                            <div class="col-md-4">
+                                <img class="img-thumbnail" width="300px" src="{{ employees.worker_avatar.url }}">
+                            </div>
+
+                            {% if uploaded_file_url %}
+                            <div id="file_upload_response">
+                                <div class="alert alert-success" style="color:white" role="alert">
+                                    <!--File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a>-->
+                                    <strong >File uploaded successfully!</strong>
+                                </div>
+                            </div>
+
+                            <script>
+
+
+
+                                function disappear()
+                                {
+                                        setTimeout(function() {
+                                        document.getElementById("file_upload_response").innerHTML = "";
+                                    }, 3000);
+                                }
+
+                                document.getElementById("file_upload_response").onshow = disappear();
+
+
+
+
+
+                            </script>
+
+                            {% endif %}
+
+
+
+                            <form method="post" enctype="multipart/form-data" action="/simple_upload/">
+                                {% csrf_token %}
+
+                                <div id="uploadImage" class="form-group">
+                                      <input type="file" id="file" name="myfile">
+                                </div>
+
+
+
+                                <button type="submit" id="uploadBtn" class="btn btn-primary " style="background-color: #2f5597;">Upload</button>
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--###############################################################################################################################################################################################################-->
+            <!--     PROFILES TAB       -->
+            <!--###############################################################################################################################################################################################################-->
+            <div class="tab-pane" id="editProfile" role="tabpanel">
+
+                <div class="container">
+
+
+
+                    <div class="card" style="padding: 20px">
+
+                        <div class="card-header">
+                            <h2 style="font-weight: 300; margin-bottom: 40px">Edit Profile</h2>
+                        </div>
+                        <div class="card-block">
+
+                            <div id="message"></div>
+                            <div id="update_message"></div>
+
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="fullName">Full name:</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="selectConstituency">Constituency:</label>
+                                    <select class="form-control" id="selectConstituency">
+                                        <option value="INIT" >Select your Constituency</option>
+
+                                        {% for constituency in constituencies %}
+                                            <option value="{{constituency.id}}">{{constituency.constituency_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="selectCounty">County:</label>
+                                    <select class="form-control" id="selectCounty">
+                                        <option value="INIT">Select your County</option>
+                                        {% for county in counties %}
+                                            <option value="{{county.id}}">{{county.county_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="selectSkill">Add Skill:</label>
+                                    <select class="form-control" id="selectSkill">
+                                        <option value="INIT">Select your Skill</option>
+                                        <option>Sewing</option>
+                                        <option>Lumberjack</option>
+                                        <option>House Cleaning</option>
+                                        <option>Nanny</option>
+                                        <option>Fumigation</option>
+                                        <option>Gardening</option>
+                                        <option>Cooking</option>
+                                        <option>Chauffeur</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+
+                                    <label style="font-size: 18px" for="phoneNumber">Phone Number:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">+254</span>
+                                        <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </form>
+
+
+                        </div>
+                        <div class="card-footer">
+                                <a href="#" id="submit_btn" onclick="" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Edit Profile</a>
+                        </div>
+                    </div>
+
+    </div>
+            </div>
+
+            <!--###############################################################################################################################################################################################################-->
+            <!--     PROFILES TAB       -->
+            <!--###############################################################################################################################################################################################################-->
+            <div class="tab-pane" id="addExperience" role="tabpanel">
+
+                <div class="container">
+
+
+
+
+                    <div class="card" style="padding: 20px">
+                        <div class="card-header">
+                            <h2 style="font-weight: 300; margin-bottom: 40px">Add Experience</h2>
+                        </div>
+                        <div class="card-block">
+
+                            <div id="tab_message"></div>
+                            <div id="tab_update_message"></div>
+
+                            <form method="post">
+                                {% csrf_token %}
+                                <div id="divJobTitle" class="form-group">
+                                    <label style="font-size: 18px" for="jobTitle">Position or Skills:</label>
+                                    <input type="text" class="form-control" id="jobTitle" placeholder="Job Title">
+                                    <div id="jobTitle_validate_text" class="form-control-feedback"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="relationship">Relationship:</label>
+                                    <input type="text" class="form-control" id="relationship" placeholder="relationship">
+                                </div>
+                                <div id="divEmployerID" class="form-group">
+                                    <label style="font-size: 18px" for="employerID">Employer ID:</label>
+                                    <input type="number" class="form-control" id="employerID" placeholder="Employer ID">
+                                </div>
+                                <div id="divWorkerName" class="form-group">
+                                    <label style="font-size: 18px" for="workerName">Worker Name:</label>
+                                    <input type="text" class="form-control" id="workerName" placeholder="Worker Name">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="remark">Remark:</label>
+                                    <textarea class="form-control" id="remark"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="tag">Tag:</label>
+                                    <input type="text" class="form-control" id="tag" placeholder="Tag">
+                                </div>
+                            </form>
+
+
+                        </div>
+                        <div class="card-footer">
+                                <a href="#" id="addExperienceBtn" onclick="" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Add Experience</a>
+                        </div>
+                    </div>
+
+
+    </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

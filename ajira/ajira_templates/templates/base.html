@@ -15,6 +15,7 @@
     <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/cdn_ajira_custom.css' %}" rel="stylesheet">
 
+
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/material.js' %}"></script>
@@ -69,14 +70,12 @@
                         <h4>Ajira.org</h4>
                         <ul>
                             <li>
-                                <a href="#">Home</a>
+                                <a href="{% url 'home' %}">Home</a>
                             </li>
                             <li>
-                                <a href="#">Objectives</a>
+                                <a href="{% url 'index' %}">Log In</a>
                             </li>
-                            <li>
-                                <a href="#">Our Work</a>
-                            </li>
+
                         </ul>
 
                     </div>
@@ -85,16 +84,19 @@
                         <h4>Domestic Worker</h4>
                         <ul>
                             <li>
-                                <a href="#">Profiles</a>
+                                <a href="{% url 'ajiriwa' %}">Profiles</a>
                             </li>
                             <li>
-                                <a href="#">Advantages</a>
+                                <a href="{% url 'ajiriwa' %}">Advantages</a>
                             </li>
                             <li>
-                                <a href="#">How to Sign Up</a>
+                                <a href="{% url 'ajiriwa' %}">How to Sign Up</a>
                             </li>
                             <li>
-                                <a href="#">Become a professional</a>
+                                <a href="{% url 'ajiriwa_reg' %}">Become an Ajiriwa</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'view_job' %}">View Jobs</a>
                             </li>
                         </ul>
                     </div>
@@ -103,16 +105,16 @@
                         <h4>Employee</h4>
                         <ul>
                             <li>
-                                <a href="#">Sign Up</a>
+                                <a href="{% url 'employer_reg' %}">Sign Up</a>
                             </li>
                             <li>
-                                <a href="#">How to get the services</a>
+                                <a href="{% url 'employer' %}">How to get the services</a>
                             </li>
                             <li>
-                                <a href="#">Make Recommendations</a>
+                                <a href="{% url 'recommend' %}">Make Recommendations</a>
                             </li>
                             <li>
-                                <a href="#">Post job</a>
+                                <a href="{% url 'post_job' %}">Post job</a>
                             </li>
 
                         </ul>

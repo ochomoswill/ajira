@@ -35,56 +35,54 @@
 
                 <form>
                     <div class="form-group">
-                        <label style="font-size: 18px" for="emailAddress">Please enter your email address:</label>
+                        <label style="font-size: 18px" for="emailAddress">Email address:</label>
                         <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Email Address">
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 18px" for="firstName">Please enter your first name:</label>
-                        <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" placeholder="First Name">
+                        <label style="font-size: 18px" for="firstName">Full name:</label>
+                        <input type="text" class="form-control" id="firstName"  placeholder="Full Name">
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 18px" for="lastName">Please enter your first name:</label>
-                        <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Last Name">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="inputPassword">Please enter your password:</label>
+                        <label style="font-size: 18px" for="inputPassword">Password:</label>
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 18px" for="retypedPassword">Please re-enter your password:</label>
+                        <label style="font-size: 18px" for="retypedPassword">Re-enter Password:</label>
                         <input type="password" class="form-control" id="retypedPassword" placeholder="Re-Type Password">
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 18px" for="inputTown">Please enter your town:</label>
-                        <input type="text" class="form-control" id="inputTown" aria-describedby="emailHelp" placeholder="Town">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="selectCounty">Select your County:</label>
-                        <select class="form-control" id="selectCounty">
-                            <option>Select your County</option>
-                            <option>Nairobi County</option>
-                            <option>Kirinyaga County</option>
-                            <option>Kajiado County</option>
-                            <option>Siaya County</option>
-                            <option>Mombasa County</option>
-                            <option>Kericho County</option>
-                            <option>Uasin Gishu County</option>
-                            <option>Nyeri County</option>
+                        <label style="font-size: 18px" for="selectConstituency">Constituency:</label>
+                        <select class="form-control" id="selectConstituency">
+                            <option value="INIT" >Select your Constituency</option>
+
+                            {% for constituency in constituencies %}
+                                <option value="{{constituency.id}}">{{constituency.constituency_name}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 18px" for="postalCode">Please enter your postal code.:</label>
-                        <input type="text" class="form-control" id="postalCode" aria-describedby="emailHelp" placeholder="Postal Code">
+                        <label style="font-size: 18px" for="selectCounty">County:</label>
+                        <select class="form-control" id="selectCounty">
+                            <option value="INIT">Select your County</option>
+                            {% for county in counties %}
+                                <option value="{{county.id}}">{{county.county_name}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label style="font-size: 18px" for="phoneNumber">Please provide a primary contact # (mobile or home phone):</label>
-                        <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp" placeholder="Primary Contact Number">
+                        <label style="font-size: 18px" for="phoneNumber">Phone Number:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">+254</span>
+                            <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" aria-describedby="basic-addon1">
+                        </div>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="">
-                            I have read and accepted the Ajira &nbsp; <a href="#"> Membership Agreement.</a>
+                            <input class="form-check-input" id="terms_conditions" type="checkbox" value="">
+                            I have read and accept the Ajira &nbsp; <a href="#"> Membership Agreement.</a>
+
                         </label>
+                        <div id="terms_conditions_validate_text" class="form-control-feedback"></div>
                     </div>
                 </form>
             </div>

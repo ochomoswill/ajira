@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Login page
     url(r'^$', views.index, name='index'),
+    url(r'^login/$', views.login, name='login'),
     # Home page
     url(r'^home/$', views.home, name='home'),
     # Employer page
@@ -31,6 +32,14 @@ urlpatterns = [
     url(r'^ajiriwa/$', views.ajiriwa, name='ajiriwa'),
     url(r'^ajiriwa_reg/$', views.ajiriwa_reg, name='ajiriwa_reg'),
     url(r'^register_ajiriwa/$', views.register_ajiriwa, name='register_ajiriwa'),
+    url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
+    url(r'^simple_upload/$', views.simple_upload, name='simple_upload'),
+    url(r'^ajiriwa_profile/(?P<slug>[-\w]+)/$', views.ajiriwa_profile, name='ajiriwa_profile'),
+    # Job Page
+    url(r'^post_job/$', views.post_job, name='post_job'),
+    url(r'^view_job/$', views.view_job, name='view_job'),
+    # Recommendations Page
+    url(r'^recommend/$', views.recommend, name='recommend'),
 
 ]
 

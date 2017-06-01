@@ -10,13 +10,24 @@
 
     <ul class="nav nav-tabs" style="padding-left: 200px" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Ajiriwa</a>
+            <a class="nav-link active" data-toggle="tab" id="ajiriwa" href="#home" role="tab" onclick="assignAjiriwaActive()" aria-controls="home">Ajiriwa</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profiles</a>
+            <a class="nav-link" data-toggle="tab" id="ajiriwa_profiles" href="#profile" onclick="assignProfileActive()" role="tab" aria-controls="profile">Profiles</a>
         </li>
 
     </ul>
+
+        <script>
+            function assignAjiriwaActive(){
+                document.getElementById('ajiriwa').classList.add('active');
+                document.getElementById('ajiriwa_profiles').classList.remove('active');
+            }
+            function assignProfileActive(){
+                document.getElementById('ajiriwa_profiles').classList.add('active');
+                document.getElementById('ajiriwa').classList.remove('active');
+            }
+        </script>
 
 
 
@@ -155,7 +166,7 @@
                             {% for employee in employees %}
                             <div class="col-lg-4" style="margin-bottom: 60px">
                                 <div class="card">
-                                    <img class="card-img-top img-fluid" src="{{ employee.worker_avatar.url }}" alt="Card image cap">
+                                    <img class="card-img-top img-thumbnail" width="500px" src="{{ employee.worker_avatar.url }}" alt="Card image cap">
                                     <div class="card-block">
                                         <h4 class="card-title">{{employee.worker_name}}</h4>
                                         <p class="card-text"><span class="profile_text_titles">Skills:</span> {{employee.skills}}</p>

@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('ajira_templates.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
 ]

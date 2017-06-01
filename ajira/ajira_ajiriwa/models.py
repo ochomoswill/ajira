@@ -3,6 +3,7 @@ from django.utils import timezone
 from ajira_parameters.models import Countries, Counties, Constituencies
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.utils.safestring import mark_safe
 
 
 # Create your models here.
@@ -32,6 +33,7 @@ class Worker(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(default=timezone.now)
 
+
     # creates the slug
     def save(self, *args, **kwargs):
         self.slug = slugify(self.worker_name)
@@ -39,6 +41,16 @@ class Worker(models.Model):
 
     def get_absolute_url(self):
         return reverse('ajiriwa_profile', args=[self.slug])
+
+    def image_tag(self):
+        string = str(self.worker_avatar)
+        first_string = string.split('/')
+        print(first_string[1])
+        if first_string[1] == "ajira_media":
+            return mark_safe('<img src="%s" width="150" height="150" />' % (self.worker_avatar))
+        return mark_safe('<img src="/ajira_media/%s" width="150" height="150" />' % (self.worker_avatar))
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
 
     def __str__(self):
         return self.worker_name

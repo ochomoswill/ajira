@@ -35,23 +35,51 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item" id="home_nav">
+                <a class="nav-link"   onclick="assignAjiriwaActive()" href="{% url 'home' %}">Home </a>
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link" href="#">About Us</a>
             </li>-->
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'ajiriwa' %}">Domestic Workers</a>
+            <li class="nav-item" id="ajiriwa_nav" >
+                <a class="nav-link" onclick="assignAjiriwaActive()" href="{% url 'ajiriwa' %}">Domestic Workers</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'employer' %}">Employers</a>
+            <li class="nav-item" id="employer_nav">
+                <a class="nav-link"  onclick="assignEmployersActive()" href="{% url 'employer' %}">Employers</a>
             </li>
         </ul>
-        <!--<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>-->
+
+        <script>
+            function assignHomeActive(){
+                document.getElementById('home_nav').className.add('active');
+                document.getElementById('ajiriwa_nav').className.remove('active');
+                document.getElementById('employer_nav').className.remove('active');
+            }
+            function assignAjiriwaActive(){
+                document.getElementById('ajiriwa_nav').classList.add('active');
+                document.getElementById('home_nav').classList.remove('active');
+                document.getElementById('employer_nav').classList.remove('active');
+            }
+            function assignEmployersActive(){
+                document.getElementById('employer_nav').classList.add('active');
+                document.getElementById('home_nav').classList.remove('active');
+                document.getElementById('ajiriwa_nav').classList.remove('active');
+            }
+        </script>
+
+        {% if user.is_authenticated %}
+              <form class="form-inline my-2 my-lg-0">
+                  <!--<h1>{{ request.session.member_slug }}</h1>-->
+                  <a href="/my_profile/{{ request.session.member_slug }}/" class="btn btn-outline-success my-2 my-sm-0" >My Profile</a>
+                  <a href="{% url 'logout_view' %}" class="btn btn-outline-danger my-2 my-sm-0" >Log Out</a>
+              </form>
+            {% else %}
+              <form class="form-inline my-2 my-lg-0">
+                  <a href="{% url 'ajiriwa_reg' %}" class="btn btn-outline-info my-2 my-sm-0" >Sign Up</a>
+                  <a href="{% url 'index' %}" class="btn btn-outline-success my-2 my-sm-0" >Log In</a>
+              </form>
+            {% endif %}
+
     </div>
 </nav>
 

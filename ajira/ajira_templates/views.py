@@ -7,6 +7,14 @@ from django.template.defaultfilters import slugify
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
+from django.contrib.auth.models import User, Group
+from django.contrib.auth import authenticate, login
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+
+
 from django.shortcuts import *
 from ajira_parameters.models import Countries, Counties, Constituencies
 from ajira_ajiriwa.models import Worker, Experience
@@ -43,34 +51,57 @@ def index(request):
     template = 'views/login.html'
     return render(request,template)
 
-def login(request):
+
+
+def login_view(request):
     email = request.POST.get('email_address')
     pwd = request.POST.get('pwd')
 
-    try:
-        current_user = Worker.objects.get(email_address=email, user_password=pwd)
-        usertype = "ajiriwa"
-    except Worker.DoesNotExist:
-        try:
-            current_user = Employer.objects.get(email_address=email, user_password=pwd)
-            usertype = "mwajiri"
-        except Employer.DoesNotExist:
-            current_user = False
-            print("Invalid user credentials!")
-            return JsonResponse({"errormsg": "Invalid user credentials!"})
+    user = auth.authenticate(username=email, password=pwd)
 
-    print(current_user)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            try:
 
-    if(usertype == "ajiriwa"):
-        current_user = Worker.objects.filter(email_address=email, user_password=pwd).values_list('worker_name', flat=True)[0]
-        slug = Worker.objects.filter(email_address=email, user_password=pwd).values_list('slug', flat=True)[0]
+                current_user = Worker.objects.get(email_address=email, user_password=pwd)
+                usertype = "ajiriwa"
+            except Worker.DoesNotExist:
+                try:
+                    current_user = Employer.objects.get(email_address=email, user_password=pwd)
+                    usertype = "mwajiri"
+                except Employer.DoesNotExist:
+                    current_user = False
+                    print("Invalid user credentials!")
+                    return JsonResponse({"errormsg": "Invalid user credentials!"})
+
+            print(current_user)
+
+            if (usertype == "ajiriwa"):
+                current_user = \
+                Worker.objects.filter(email_address=email, user_password=pwd).values_list('worker_name', flat=True)[0]
+                slug = Worker.objects.filter(email_address=email, user_password=pwd).values_list('slug', flat=True)[0]
+                request.session['member_slug'] = slug
+            else:
+                current_user = \
+                Employer.objects.filter(email_address=email, user_password=pwd).values_list('employee_name', flat=True)[
+                    0]
+
+            print("Congratulations " + current_user + slug)
+            message = "Congratulations " + str(current_user) + str(slug)
+            return JsonResponse({"successful": message, "slug": slug})
+
+
     else:
-        current_user = Employer.objects.filter(email_address=email, user_password=pwd).values_list('employee_name', flat=True)[0]
+        print("Invalid Auth user credentials!")
+        return JsonResponse({"errormsg": "Invalid user credentials!"})
 
+def logout_view(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    template = '/'
+    return redirect(template)
 
-    print("Congratulations " + current_user + slug)
-    message = "Congratulations " + str(current_user) + str(slug)
-    return JsonResponse({"successful": message, "slug": slug})
 
 
 
@@ -159,57 +190,104 @@ def register_ajiriwa(request):
     #https://docs.djangoproject.com/en/1.8/topics/db/queries/
     #https: // simpleisbetterthancomplex.com / tutorial / 2016 / 11 / 22 / django - multiple - file - upload - using - ajax.html
     print(data)
+
+
+
+
+    user = User.objects.create_user(email, email, pwd)
+
+    ajiriwa_group = Group.objects.get(name='Ajiriwa')
+    ajiriwa_group.user_set.add(user)
+
     return JsonResponse({"data":"Successfully received!"})
 
+# @login_required
 def ajiriwa_profile(request, slug):
-    employees = get_object_or_404(Worker, slug=slug)
-    current_user_id = Worker.objects.filter(slug=slug).values_list('id', flat=True)[0]
-    print(current_user_id)
-    experiences = Experience.objects.filter(worker_id=current_user_id)
-    context = {'employees': employees, "experiences":experiences}
-    template = 'views/my_account/my_profile.html'
-    return render(request, template, context)
+    if not request.user.is_authenticated():
+        return redirect('/home')
+    elif request.user.is_authenticated():
+        employees = get_object_or_404(Worker, slug=slug)
+        current_user_id = Worker.objects.filter(slug=slug).values_list('id', flat=True)[0]
+        print(current_user_id)
+        print (request.user)
+        experiences = Experience.objects.filter(worker_id=current_user_id)
+        context = {'employees': employees, "experiences":experiences}
+        template = 'views/domestic_workers/ajiriwa_profile.html'
+        return render(request, template, context)
 
-def edit_profile(request):
-    template = 'views/domestic_workers/edit_profile.html'
-    return render(request,template)
+
+def my_profile(request, slug):
+    if not request.user.is_authenticated():
+        return redirect('/home')
+    elif request.user.is_authenticated():
+        employees = get_object_or_404(Worker, slug=slug)
+        current_user_id = Worker.objects.filter(slug=slug).values_list('id', flat=True)[0]
+        print(current_user_id)
+        print (request.user)
+        experiences = Experience.objects.filter(worker_id=current_user_id)
+        context = {'employees': employees, "experiences":experiences}
+        template = 'views/my_account/my_profile.html'
+        return render(request, template, context)
+
+def edit_profile(request, slug):
+    if not request.user.is_authenticated():
+        return redirect('/home')
+    elif request.user.is_authenticated():
+        employees = get_object_or_404(Worker, slug=slug)
+        current_user_id = Worker.objects.filter(slug=slug, email_address=request.user).values_list('id', flat=True)[0]
+        print(current_user_id)
+        print (request.user)
+        experiences = Experience.objects.filter(worker_id=current_user_id)
+        context = {'employees': employees, "experiences": experiences}
+        template = 'views/domestic_workers/edit_profile.html'
+        return render(request,template, context)
 
 
 
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        print(uploaded_file_url)
-        return render(request, 'views/domestic_workers/edit_profile.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'views/domestic_workers/edit_profile.html')
+        current_user_id = Worker.objects.filter(email_address=request.user).values_list('id', flat=True)[0]
+        if request.FILES['myfile']:
+            myfile = request.FILES['myfile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
+            print(uploaded_file_url)
+            Worker.objects.filter(email_address=request.user).update(worker_avatar=uploaded_file_url)
+            return redirect('/edit_profile/' + request.session['member_slug']+ '/', {'uploaded_file_url': uploaded_file_url})
+    return redirect('/edit_profile/' + request.session['member_slug']+ '/')
 
 
 # ===========================================================================================================================
 # Job Page
 # ===========================================================================================================================
 def post_job(request):
-    constituencies = Constituencies.objects.all()
-    counties = Counties.objects.all()
-    context = {'constituencies': constituencies, 'counties': counties}
-    template = 'views/jobs/post_job.html'
-    return render(request,template,context)
+    if not request.user.is_authenticated():
+        return redirect('/home')
+    elif request.user.is_authenticated():
+        constituencies = Constituencies.objects.all()
+        counties = Counties.objects.all()
+        context = {'constituencies': constituencies, 'counties': counties}
+        template = 'views/jobs/post_job.html'
+        return render(request,template,context)
 
 def view_job(request):
-    template = 'views/jobs/view_job.html'
-    return render(request, template)
+    if not request.user.is_authenticated():
+        return redirect('/home')
+    elif request.user.is_authenticated():
+        template = 'views/jobs/view_job.html'
+        return render(request, template)
 
 
 # ===========================================================================================================================
 # Recommendations Page
 # ===========================================================================================================================
 def recommend(request):
-    template = 'views/recommendations/give_recommendations.html'
-    return render(request,template)
+    if not request.user.is_authenticated():
+        return redirect('/home')
+    elif request.user.is_authenticated():
+        template = 'views/recommendations/give_recommendations.html'
+        return render(request,template)
 
 
 

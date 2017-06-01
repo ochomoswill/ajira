@@ -10,6 +10,12 @@
 
 <div class="jumbotron jumbotron-fluid home_jumbotron" >
     <div class="container">
+
+        {% if user.is_authenticated %}
+              <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+            {% else %}
+              <p>Welcome, new user. Please log in.</p>
+            {% endif %}
         <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Bridging the gap between the informal sector and the employers. </h1>
 
         <!--<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>

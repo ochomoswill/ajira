@@ -4,30 +4,348 @@
 <script src="{% static 'js/posts/post_ajiriwa.js' %}"></script>
 
 {% block title %}
-    Edit Profile
+Edit Profile
 
 {% endblock %}
 
 
 {% block content %}
 
-    <script src="{% static 'js/posts/post_ajiriwa.js' %}"></script>
+<script src="{% static 'js/posts/post_ajiriwa.js' %}"></script>
 
-    <div class="jumbotron jumbotron-fluid text-center">
-        <div class="container">
-            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Edit Profile</h1>
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+        <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Edit Profile</h1>
 
 
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-12">
+
+
+        <div class="row">
+            <div class="offset-md-1 col-md-10">
+
+                <div class="row">
+
+                    <div class="col-md-9">
+                        <div class="card" style="margin-bottom: 60px">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-right: 40px">
+                                        <img class="img-thumbnail" width="500px"
+                                             src="{{ employees.worker_avatar.url }}">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h4 style="margin-top: 30px" class="card-title">I'm <span
+                                                style="font-weight: bold">{{ employees.worker_name }}</span>
+                                        </h4>
+                                        <hr>
+                                        <p class="card-text"><span class="profile_text_titles">Skills:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;</span>
+                                            {{employees.skills }}</p>
+                                        <p class="card-text"><span
+                                                class="profile_text_titles">Location:&emsp;&emsp;&emsp;</span> Nairobi,
+                                            Kenya.
+                                        </p>
+                                        <p class="card-text"><span
+                                                class="profile_text_titles">Services:&emsp;&emsp;&emsp;&nbsp;</span>
+                                            Plumbing
+                                            and Chief Chef</p>
+                                        <a href="#" class="btn btn-primary"
+                                           style="margin-top: 20px; background: #4a58a5">Contact
+                                            Ajiriwa</a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a href="/my_profile/{{ request.session.member_slug }}/" style="background: none"
+                                       class="border-0 back-link-hover">
+                                        <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                             src="{% static 'images/workers/useraccount.svg' %}">
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/edit_profile/{{ request.session.member_slug }}/" style="background: none"
+                                       class="border-0 back-link-hover">
+                                        <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                             src="{% static 'images/workers/mode_edit.svg' %}">
+                                        Edit Profile
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a style="background: none" class="border-0 back-link-hover">
+                                        <img width="32px" style="margin-right: 10px"
+                                             src="{% static 'images/workers/message.svg' %}">
+                                        View Notifications
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{% url 'view_job' %}" style="background: none" class="border-0 back-link-hover">
+                                        <img width="32px" style="margin-right: 10px"
+                                             src="{% static 'images/workers/contact.svg' %}">
+                                        View Jobs
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card" style="margin-bottom: 60px">
+                    <div class="">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" id="profilePhotoTab"
+                                   onclick="assignProfileActive()"
+                                   href="#profilePhoto" role="tab">Change Profile Photo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" id="editProfileTab" onclick="assignEditActive()"
+                                   href="#editProfile" role="tab">Edit Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" id="addExperienceTab"
+                                   onclick="assignExperienceActive()"
+                                   href="#addExperience" role="tab">Add Experience</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="profilePhoto" role="tabpanel">
+                                <div class="container">
+                                    <div class="" style="padding: 20px">
+                                        <div class="card-header">
+                                            <h2 style="font-weight: 300; margin-bottom: 40px">Change Profile Photo</h2>
+                                        </div>
+                                        <div class="card-block">
+                                            <div id="uploadMessage">
+
+                                            </div>
+
+                                            <div class="col-md-4" style="margin-bottom: 20px">
+                                                <img class="img-thumbnail" width="300px"
+                                                     src="{{ employees.worker_avatar.url }}">
+                                            </div>
+
+
+                                            <form method="post" enctype="multipart/form-data" action="/simple_upload/">
+                                                {% csrf_token %}
+
+                                                <div id="uploadImage" class="form-group">
+                                                    <input type="file" id="file" name="myfile">
+                                                </div>
+
+
+                                                <button type="submit" id="uploadBtn" class="btn btn-primary "
+                                                        style="background-color: #2f5597;">Upload
+                                                </button>
+
+                                            </form>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="editProfile" role="tabpanel">
+                                <div class="container">
+
+
+                                    <div class="" style="padding: 20px">
+
+                                        <div class="card-header">
+                                            <h2 style="font-weight: 300; margin-bottom: 40px">Edit Profile</h2>
+                                        </div>
+                                        <div class="card-block">
+
+                                            <div id="message"></div>
+                                            <div id="update_message"></div>
+
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px" for="fullName">Full name:</label>
+                                                    <input type="text" class="form-control" id="fullName"
+                                                           placeholder="First Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px" for="about">About:</label>
+                                                    <textarea class="form-control" id="about"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px" for="selectConstituency">Constituency:</label>
+                                                    <select class="form-control" id="selectConstituency">
+                                                        <option value="INIT">Select your Constituency</option>
+
+                                                        {% for constituency in constituencies %}
+                                                        <option value="{{constituency.id}}">
+                                                            {{constituency.constituency_name}}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px" for="selectCounty">County:</label>
+                                                    <select class="form-control" id="selectCounty">
+                                                        <option value="INIT">Select your County</option>
+                                                        {% for county in counties %}
+                                                        <option value="{{county.id}}">{{county.county_name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px" for="selectSkill">Add Skill:</label>
+                                                    <select class="form-control" id="selectSkill">
+                                                        <option value="INIT">Select your Skill</option>
+                                                        <option>Sewing</option>
+                                                        <option>Lumberjack</option>
+                                                        <option>House Cleaning</option>
+                                                        <option>Nanny</option>
+                                                        <option>Fumigation</option>
+                                                        <option>Gardening</option>
+                                                        <option>Cooking</option>
+                                                        <option>Chauffeur</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label style="font-size: 18px" for="phoneNumber">Phone
+                                                        Number:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" id="basic-addon1">+254</span>
+                                                        <input type="number" class="form-control" id="phoneNumber"
+                                                               placeholder="Phone Number"
+                                                               aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+
+
+                                            </form>
+
+
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="#" id="submit_btn" onclick=""
+                                               class="btn btn-primary btn-lg btn-block"
+                                               style="background-color: #2f5597;">Edit Profile</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="addExperience" role="tabpanel">
+                                <div class="container">
+
+                                    <div class="" style="padding: 20px">
+                                        <div class="card-header">
+                                            <h2 style="font-weight: 300; margin-bottom: 40px">Add Experience</h2>
+                                        </div>
+                                        <div class="card-block">
+
+                                            <div id="tab_message"></div>
+                                            <div id="tab_update_message"></div>
+
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <div id="divJobTitle" class="form-group">
+                                                    <label style="font-size: 18px" for="jobTitle">Position or
+                                                        Skills:</label>
+                                                    <input type="text" class="form-control" id="jobTitle"
+                                                           placeholder="Job Title">
+                                                    <div id="jobTitle_validate_text"
+                                                         class="form-control-feedback"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px"
+                                                           for="relationship">Relationship:</label>
+                                                    <input type="text" class="form-control" id="relationship"
+                                                           placeholder="relationship">
+                                                </div>
+                                                <div id="divEmployerID" class="form-group">
+                                                    <label style="font-size: 18px" for="employerID">Employer ID:</label>
+                                                    <input type="number" class="form-control" id="employerID"
+                                                           placeholder="Employer ID">
+                                                </div>
+                                                <div id="divWorkerName" class="form-group">
+                                                    <label style="font-size: 18px" for="workerName">Worker Name:</label>
+                                                    <input type="text" class="form-control" id="workerName"
+                                                           placeholder="Worker Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px" for="remark">Remark:</label>
+                                                    <textarea class="form-control" id="remark"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="font-size: 18px" for="tag">Tag:</label>
+                                                    <input type="text" class="form-control" id="tag" placeholder="Tag">
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="#" id="addExperienceBtn" onclick=""
+                                               class="btn btn-primary btn-lg btn-block"
+                                               style="background-color: #2f5597;">Add Experience</a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function assignProfileActive() {
+                        document.getElementById('profilePhotoTab').classList.add('active');
+                        document.getElementById('editProfileTab').classList.remove('active');
+                        document.getElementById('addExperienceTab').classList.remove('active');
+                    }
+                    function assignEditActive() {
+                        document.getElementById('editProfileTab').classList.add('active');
+                        document.getElementById('profilePhotoTab').classList.remove('active');
+                        document.getElementById('addExperienceTab').classList.remove('active');
+                    }
+                    function assignExperienceActive() {
+                        document.getElementById('addExperienceTab').classList.add('active');
+                        document.getElementById('profilePhotoTab').classList.remove('active');
+                        document.getElementById('editProfileTab').classList.remove('active');
+                    }
+                </script>
+
+            </div>
         </div>
     </div>
 
-    <div class="container">
-    <div class="card" style="margin-bottom: 60px">
+
+    <!--<div class="card" style="margin-bottom: 60px">
         <div class="card-header">
 
-          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+          <ul class="nav nav-tabs card-header-tabs" id="myTab">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#profilePhoto" role="tab" aria-controls="home">Change Profile Photo</a>
+                <a class="nav-link active" data-toggle="tab" href="#profilePhoto" role="tab" aria-controls="home">Change Profile Photo</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#editProfile" role="tab" aria-controls="profile">Edit Profile</a>
@@ -39,15 +357,15 @@
           </ul>
         </div>
         <div class="card-block">
-          <!--###############################################################################################################################################################################################################-->
-        <!--     AJIRIWA TAB       -->
-        <!--###############################################################################################################################################################################################################-->
+          &lt;!&ndash;###############################################################################################################################################################################################################&ndash;&gt;
+        &lt;!&ndash;     AJIRIWA TAB       &ndash;&gt;
+        &lt;!&ndash;###############################################################################################################################################################################################################&ndash;&gt;
         <div class="tab-content">
             <div class="tab-pane active" id="profilePhoto" role="tabpanel">
 
 
                 <div class="container">
-                    <div class="card" style="padding: 20px">
+                    <div class="" style="padding: 20px">
                         <div class="card-header">
                             <h2 style="font-weight: 300; margin-bottom: 40px">Change Profile Photo</h2>
                         </div>
@@ -60,7 +378,7 @@
                             {% if uploaded_file_url %}
                             <div id="file_upload_response">
                                 <div class="alert alert-success" style="color:white" role="alert">
-                                    <!--File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a>-->
+                                    &lt;!&ndash;File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a>&ndash;&gt;
                                     <strong >File uploaded successfully!</strong>
                                 </div>
                             </div>
@@ -110,16 +428,16 @@
 
 
 
-            <!--###############################################################################################################################################################################################################-->
-            <!--     PROFILES TAB       -->
-            <!--###############################################################################################################################################################################################################-->
+            &lt;!&ndash;###############################################################################################################################################################################################################&ndash;&gt;
+            &lt;!&ndash;     PROFILES TAB       &ndash;&gt;
+            &lt;!&ndash;###############################################################################################################################################################################################################&ndash;&gt;
             <div class="tab-pane" id="editProfile" role="tabpanel">
 
                 <div class="container">
 
 
 
-                    <div class="card" style="padding: 20px">
+                    <div class="" style="padding: 20px">
 
                         <div class="card-header">
                             <h2 style="font-weight: 300; margin-bottom: 40px">Edit Profile</h2>
@@ -134,6 +452,10 @@
                                 <div class="form-group">
                                     <label style="font-size: 18px" for="fullName">Full name:</label>
                                     <input type="text" class="form-control" id="fullName" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="about">About:</label>
+                                    <textarea class="form-control" id="about"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label style="font-size: 18px" for="selectConstituency">Constituency:</label>
@@ -194,17 +516,14 @@
     </div>
             </div>
 
-            <!--###############################################################################################################################################################################################################-->
-            <!--     PROFILES TAB       -->
-            <!--###############################################################################################################################################################################################################-->
+            &lt;!&ndash;###############################################################################################################################################################################################################&ndash;&gt;
+            &lt;!&ndash;     EXPERIENCE TAB       &ndash;&gt;
+            &lt;!&ndash;###############################################################################################################################################################################################################&ndash;&gt;
             <div class="tab-pane" id="addExperience" role="tabpanel">
 
                 <div class="container">
 
-
-
-
-                    <div class="card" style="padding: 20px">
+                    <div class="" style="padding: 20px">
                         <div class="card-header">
                             <h2 style="font-weight: 300; margin-bottom: 40px">Add Experience</h2>
                         </div>
@@ -254,15 +573,8 @@
             </div>
         </div>
         </div>
-    </div>
+    </div>-->
 </div>
-
-
-
-
-
-
-
 
 
 {% endblock %}

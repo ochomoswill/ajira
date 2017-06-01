@@ -7,7 +7,7 @@ var loader = ""+
         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>" +
         "<span aria-hidden='true'>&times;</span>" +
         "</button>" +
-        "<strong>KIndly wait as we process the data...</strong>" +
+        "<strong>Kindly wait as we process the data...</strong>" +
         "</div>";
 
 
@@ -67,7 +67,7 @@ function post(data, url) {
             {
                 document.getElementById("message").innerHTML = "";
                 document.getElementById("update_message").innerHTML = alert(obj.successful);
-                window.location="/ajiriwa_profile/" + obj.slug ;
+                window.location="/my_profile/" + obj.slug ;
             }
 
             console.log("posted the data");
@@ -94,7 +94,7 @@ function fetch_post_login_data(){
     setLoader();
 
     // var url = "{% url 'register_ajiriwa' %}";
-    var url = "/login/";
+    var url = "/login_view/";
 
 
     /* ENTERED FIELD DATA */

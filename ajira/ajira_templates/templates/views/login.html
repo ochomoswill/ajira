@@ -1,34 +1,45 @@
-{% extends 'base.html' %}
-
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+    <title>
+        Ajira | Log In
+    </title>
 
-{% block title %}
-    Log In
-{% endblock %}
+    <link href="{% static 'css/font_awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'css/material.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/docs.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/cdn_ajira_custom.css' %}" rel="stylesheet">
 
 
-{% block content %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/material.js' %}"></script>
+    <script src="{% static 'js/project.js' %}"></script>
     <script src="{% static 'js/posts/post_login.js' %}"></script>
+</head>
+<body>
 
-    <div class="jumbotron jumbotron-fluid text-center">
-        <div class="container">
-            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Log in to your Member Account</h1>
+<main>
+
+    <style>
+        body{
+            /*height: 100vh;*/
+            background-color: lightgrey;
+        }
+
+    </style>
+
+    <div class="main">
 
 
+            <div class="container">
 
-            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">
-                Not yet registered as an Ajiriwa? <a href="domestic_workers/employee_registration.html">Register as a Ajiriwa</a>
-            </h1>
-            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 20px">
-                Looking to be an Ajira Client? <a href="employers/client_registration.html">Register as a Client</a>
-            </h1>
-
-        </div>
-    </div>
-
-    <div class="container">
-
-        <div class="col-md-12" style="margin-bottom: 60px">
+        <div class="col-md-12" style="padding-top:20%;margin-bottom: 60px">
             <div class="row">
                 <div class="offset-md-1 col-md-10">
                     <div class="card" style="padding: 20px">
@@ -63,6 +74,20 @@
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-primary btn-lg btn-block" onclick="fetch_post_login_data()" style="background-color: #2f5597;">Log In</a>
+
+                            <hr>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{% url 'ajiriwa_reg' %}" class="btn btn-outline-info btn-lg btn-block"
+                                           style="margin-top: 20px;border: 1px solid #2196f3;">Sign Up</a>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <a href="{% url 'home' %}" class="btn btn-outline-success btn-lg btn-block"
+                                           style="margin-top: 20px; border: 1px solid #4caf50;">Back Home</a>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -70,4 +95,12 @@
         </div>
 
     </div>
-{% endblock %}
+
+
+    </div>
+
+
+</main>
+
+</body>
+</html>

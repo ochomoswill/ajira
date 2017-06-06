@@ -2,197 +2,284 @@
 
 
 {% block title %}
-    Ajiriwa
+Ajiriwa
 {% endblock %}
 
 
 {% block content %}
 
-    <ul class="nav nav-tabs" style="padding-left: 200px" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" id="ajiriwa" href="#home" role="tab" onclick="assignAjiriwaActive()" aria-controls="home">Ajiriwa</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" id="ajiriwa_profiles" href="#profile" onclick="assignProfileActive()" role="tab" aria-controls="profile">Profiles</a>
-        </li>
+<ul class="nav nav-tabs" style="padding-left: 200px" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" id="ajiriwa" href="#home" role="tab"
+           onclick="assignAjiriwaActive()" aria-controls="home">Ajiriwa</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" id="ajiriwa_profiles" href="#profile" onclick="assignProfileActive()"
+           role="tab" aria-controls="profile">Profiles</a>
+    </li>
 
-    </ul>
+</ul>
 
-        <script>
-            function assignAjiriwaActive(){
-                document.getElementById('ajiriwa').classList.add('active');
-                document.getElementById('ajiriwa_profiles').classList.remove('active');
-            }
-            function assignProfileActive(){
-                document.getElementById('ajiriwa_profiles').classList.add('active');
-                document.getElementById('ajiriwa').classList.remove('active');
-            }
-        </script>
-
-
-
-
-        <!--###############################################################################################################################################################################################################-->
-        <!--     AJIRIWA TAB       -->
-        <!--###############################################################################################################################################################################################################-->
-        <div class="tab-content">
-            <div class="tab-pane active" id="home" role="tabpanel">
+<script>
+    function assignAjiriwaActive() {
+        document.getElementById('ajiriwa').classList.add('active');
+        document.getElementById('ajiriwa_profiles').classList.remove('active');
+    }
+    function assignProfileActive() {
+        document.getElementById('ajiriwa_profiles').classList.add('active');
+        document.getElementById('ajiriwa').classList.remove('active');
+    }
+</script>
 
 
-                <div class="jumbotron jumbotron-fluid text-center">
-                    <div class="container">
-                        <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Become an Ajiriwa</h1>
-
-                        <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">Apply to be an Ajiriwa and have a profile visible to all possible employers.</h1>
-
-                    </div>
-                </div>
+<!--###############################################################################################################################################################################################################-->
+<!--     AJIRIWA TAB       -->
+<!--###############################################################################################################################################################################################################-->
+<div class="tab-content">
+    <div class="tab-pane active" id="home" role="tabpanel">
 
 
-                <div class="container">
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+                <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Become an
+                    Ajiriwa</h1>
 
-                    <div class="col-md-12" style="padding: 20px; margin-top: 60px; margin-bottom: 60px;">
+                <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">Apply to be an Ajiriwa
+                    and have a profile visible to all possible employers.</h1>
 
-                        <h1 class="text-center" style="margin-bottom: 60px; font-weight: 300">Why Ajira is right for you?</h1>
-
-                        <div class="row ajira-objectives">
-                            <div class="col-md-6 ajira-objectives-text">
-                                <ul class="list-unstyled">
-                                    <li class="media">
-                                        <img style="width:25px; margin-top: 5px" class="d-flex mr-3" src="/ajira_static/images/workers/success%20(1).png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h3 class="mt-0 mb-1" style="font-weight: 300">Gain access to a large network of new customers </h3>
-                                        </div>
-                                    </li>
-                                    <li class="media my-4">
-                                        <img style="width:25px; margin-top: 5px" class="d-flex mr-3" src="/ajira_static/images/workers/success%20(1).png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h3 class="mt-0 mb-1" style="font-weight: 300">Build up your professional profile through customer feedback and gain an online personal resume that grows with each job you do</h3>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img style="width:25px; margin-top: 5px" class="d-flex mr-3" src="/ajira_static/images/workers/success%20(1).png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h3 class="mt-0 mb-1" style="font-weight: 300">Participate in free training courses covering topics that will help you get better at your job</h3>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img style="width:25px; margin-top: 5px" class="d-flex mr-3" src="/ajira_static/images/workers/success%20(1).png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h3 class="mt-0 mb-1" style="font-weight: 300">We use the feedback you submit to monitor the employer network, we value your safety and satisfaction too</h3>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6 img-right">
-                                <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-lg-12" style="margin-bottom: 60px">
-                        <h1 class="text-center" style="margin-bottom: 60px; font-weight: 300">Becoming an Ajiriwa</h1>
-                        <div class="row ajira-objectives">
-                            <div class="col-lg-6 ajira-objectives-text">
-                                <h2>Create your Professional Profile</h2>
-                                <p>Create your own personalized Professional Profile to promote your unique work experience, education, credentials, skills and availability. eAdvocate Verifies Credentials to provide Clients with additional peace of mind when considering you for a Job. The more detailed your profile, the more likely Clients will hire you.</p>
-                                <a style="color: #2f5597; text-transform: uppercase; font-weight: 600" href="#" >Start Your Profile</a>
-                            </div>
-                            <div class="col-lg-6 img-right">
-                                <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="row ajira-objectives">
-                            <div class="col-lg-6 img-left">
-                                <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
-                            </div>
-                            <div class="col-lg-6 ajira-objectives-text">
-                                <h2>Browse Job Opportunities</h2>
-                                <p>Browse Requests for Care (RFCs) in your area and begin delivering care. eAdvocate allows you to search all current job opportunites in your area by: skills, location, schedule and pay rates. eAdvocate also alerts you to jobs that may fit your skills and experience.</p>
-                                <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#" >Browse Jobs</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12" style="margin-bottom: 60px">
-                        <div class="row ajira-objectives">
-                            <div class="col-lg-6 ajira-objectives-text">
-                                <h2>Contract Directly with Clients</h2>
-                                <p>You choose the jobs and Clients you want to work with. You contract directly with Clients to agree on the scope of care, hourly rate and schedule.</p>
-                                <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#" >Learn More</a>
-                            </div>
-                            <div class="col-lg-6 img-right">
-                                <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card text-center" style="margin-bottom: 60px; margin-top: 60px">
-                        <div class="card-block">
-                            <h4 class="card-title">Become an Ajiriwa</h4>
-                            <p class="card-text">To apply click on the button below and fill in the details appropriately.</p>
-                            <a href="{% url 'ajiriwa_reg' %}" class="btn btn-primary" style="background-color: #2f5597;">Apply to be an Ajiriwa</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-            <!--###############################################################################################################################################################################################################-->
-            <!--     PROFILES TAB       -->
-            <!--###############################################################################################################################################################################################################-->
-            <div class="tab-pane" id="profile" role="tabpanel">
-
-                <div class="jumbotron jumbotron-fluid text-center">
-                    <div class="container">
-                        <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Have a look at the Ajiriwas</h1>
-
-                        <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">Some of the professionals who have their profiles uploaded.</h1>
-
-                    </div>
-                </div>
-
-                <div class="container">
-
-
-
-                    <div class="col-lg-12" style="padding: 60px">
-                        <div class="row" >
-                            {% for employee in employees %}
-                            <div class="col-lg-4" style="margin-bottom: 60px">
-                                <div class="card">
-                                    <img class="card-img-top img-thumbnail" width="500px" src="{{ employee.worker_avatar.url }}" alt="Card image cap">
-                                    <div class="card-block">
-                                        <h4 class="card-title">{{employee.worker_name}}</h4>
-                                        <p class="card-text"><span class="profile_text_titles">Skills:</span> {{employee.skills}}</p>
-                                        <p class="card-text"><span class="profile_text_titles">Location:</span> Nairobi, Kenya.</p>
-                                        <p class="card-text"><span class="profile_text_titles">Services:</span> Plumbing and Chief Chef</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a style="background-color: #2f5597;" class="btn btn-primary btn-lg" href="{{employee.get_absolute_url}}" role="button">See Full Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-
-                        </div>
-
-
-
-                        <div class="row" style="margin-bottom: 60px; margin-top: 60px">
-                            <div class="offset-lg-4 col-lg-4 text-center">
-                                <a href="#" style="color: #2f5597;text-transform: uppercase; font-weight: 500; font-size: 21px">Browse More Ajiriwas</a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
             </div>
         </div>
+
+
+        <div class="container">
+
+            <div class="col-md-12" style="padding: 20px; margin-top: 60px; margin-bottom: 60px;">
+
+                <h1 class="text-center" style="margin-bottom: 60px; font-weight: 300">Why Ajira is right for you?</h1>
+
+                <div class="row ajira-objectives">
+                    <div class="col-md-6 ajira-objectives-text">
+                        <ul class="list-unstyled">
+                            <li class="media">
+                                <img style="width:25px; margin-top: 5px" class="d-flex mr-3"
+                                     src="/ajira_static/images/workers/success%20(1).png"
+                                     alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h3 class="mt-0 mb-1" style="font-weight: 300">Gain access to a large network of new
+                                        customers </h3>
+                                </div>
+                            </li>
+                            <li class="media my-4">
+                                <img style="width:25px; margin-top: 5px" class="d-flex mr-3"
+                                     src="/ajira_static/images/workers/success%20(1).png"
+                                     alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h3 class="mt-0 mb-1" style="font-weight: 300">Build up your professional profile
+                                        through customer feedback and gain an online personal resume that grows with
+                                        each job you do</h3>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <img style="width:25px; margin-top: 5px" class="d-flex mr-3"
+                                     src="/ajira_static/images/workers/success%20(1).png"
+                                     alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h3 class="mt-0 mb-1" style="font-weight: 300">Participate in free training courses
+                                        covering topics that will help you get better at your job</h3>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <img style="width:25px; margin-top: 5px" class="d-flex mr-3"
+                                     src="/ajira_static/images/workers/success%20(1).png"
+                                     alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h3 class="mt-0 mb-1" style="font-weight: 300">We use the feedback you submit to
+                                        monitor the employer network, we value your safety and satisfaction too</h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 img-right">
+                        <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12" style="margin-bottom: 60px">
+                <h1 class="text-center" style="margin-bottom: 60px; font-weight: 300">Becoming an Ajiriwa</h1>
+                <div class="row ajira-objectives">
+                    <div class="col-lg-6 ajira-objectives-text">
+                        <h2>Create your Professional Profile</h2>
+                        <p>Create your own personalized Professional Profile to promote your unique work experience,
+                            education, credentials, skills and availability. eAdvocate Verifies Credentials to provide
+                            Clients with additional peace of mind when considering you for a Job. The more detailed your
+                            profile, the more likely Clients will hire you.</p>
+                        <a style="color: #2f5597; text-transform: uppercase; font-weight: 600" href="#">Start Your
+                            Profile</a>
+                    </div>
+                    <div class="col-lg-6 img-right">
+                        <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row ajira-objectives">
+                    <div class="col-lg-6 img-left">
+                        <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+                    </div>
+                    <div class="col-lg-6 ajira-objectives-text">
+                        <h2>Browse Job Opportunities</h2>
+                        <p>Browse Requests for Care (RFCs) in your area and begin delivering care. eAdvocate allows you
+                            to search all current job opportunites in your area by: skills, location, schedule and pay
+                            rates. eAdvocate also alerts you to jobs that may fit your skills and experience.</p>
+                        <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#">Browse Jobs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12" style="margin-bottom: 60px">
+                <div class="row ajira-objectives">
+                    <div class="col-lg-6 ajira-objectives-text">
+                        <h2>Contract Directly with Clients</h2>
+                        <p>You choose the jobs and Clients you want to work with. You contract directly with Clients to
+                            agree on the scope of care, hourly rate and schedule.</p>
+                        <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#">Learn More</a>
+                    </div>
+                    <div class="col-lg-6 img-right">
+                        <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-center" style="margin-bottom: 60px; margin-top: 60px">
+                <div class="card-block">
+                    <h4 class="card-title">Become an Ajiriwa</h4>
+                    <p class="card-text">To apply click on the button below and fill in the details appropriately.</p>
+                    <a href="{% url 'ajiriwa_reg' %}" class="btn btn-primary" style="background-color: #2f5597;">Apply
+                        to be an Ajiriwa</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--###############################################################################################################################################################################################################-->
+    <!--     PROFILES TAB       -->
+    <!--###############################################################################################################################################################################################################-->
+    <div class="tab-pane" id="profile" role="tabpanel">
+
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+                <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Have a look at the
+                    Ajiriwas</h1>
+
+                <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">Some of the
+                    professionals who have their profiles uploaded.</h1>
+
+            </div>
+        </div>
+
+        <div class="container">
+
+
+            <div class="col-lg-12" style="padding: 60px">
+                <div class="card" style="margin-bottom: 40px">
+                    <div class="card-header">
+                        <h3>Search</h3>
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                        <label style="font-size: 18px" for="selectSkill">Skill:</label>
+                                        <select class="form-control" id="selectSkill">
+                                            <option value="INIT">Select Skill</option>
+                                            <option>Sewing</option>
+                                            <option>Lumberjack</option>
+                                            <option>House Cleaning</option>
+                                            <option>Nanny</option>
+                                            <option>Fumigation</option>
+                                            <option>Gardening</option>
+                                            <option>Cooking</option>
+                                            <option>Chauffeur</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="selectCounty">County:</label>
+                                    <select class="form-control" id="selectCounty">
+                                        <option value="INIT">Select County</option>
+                                        {% for county in counties %}
+                                        <option value="{{county.id}}">{{county.county_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label style="font-size: 18px"
+                                           for="selectConstituency">Constituency:</label>
+                                    <select class="form-control" id="selectConstituency">
+                                        <option value="INIT">Select Constituency</option>
+
+                                        {% for constituency in constituencies %}
+                                        <option value="{{constituency.id}}">
+                                            {{constituency.constituency_name}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                                    <div class="col-md-3 pull-right">
+                                        <a href="#"  class="btn btn-outline-info btn-lg btn-block"
+                                           style="border: 1px solid #2196f3;">Search</a>
+                                    </div>
+
+                                </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    {% for employee in employees %}
+                    <div class="col-lg-4" style="margin-bottom: 60px">
+                        <div class="card">
+                            <img class="card-img-top img-thumbnail" width="500px" src="{{ employee.worker_avatar.url }}"
+                                 alt="Card image cap">
+                            <div class="card-block">
+                                <h4 class="card-title">{{employee.worker_name}}</h4>
+                                <p class="card-text"><span class="profile_text_titles">Skills:</span>
+                                    {{employee.skills}}</p>
+                                <p class="card-text"><span class="profile_text_titles">Location:</span> Nairobi, Kenya.
+                                </p>
+                                <p class="card-text"><span class="profile_text_titles">Services:</span> Plumbing and
+                                    Chief Chef</p>
+                            </div>
+                            <div class="card-footer">
+                                <a style="background-color: #2f5597;" class="btn btn-primary btn-lg"
+                                   href="{{employee.get_absolute_url}}" role="button">See Full Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="row" style="margin-bottom: 60px; margin-top: 60px">
+                    <div class="offset-lg-4 col-lg-4 text-center">
+                        {% include 'paginator.html' with page=employees %}
+                        <!--<a href="#" style="color: #2f5597;text-transform: uppercase; font-weight: 500; font-size: 21px">Browse More Ajiriwas</a>-->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
 {% endblock %}

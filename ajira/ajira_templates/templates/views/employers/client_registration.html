@@ -1,101 +1,201 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+    <title>
+        Ajira | Log In
+    </title>
+
+    <link href="{% static 'css/font_awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'css/material.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/docs.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/cdn_ajira_custom.css' %}" rel="stylesheet">
 
 
-{% block title %}
-    Employer Reg
-{% endblock %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/material.js' %}"></script>
+    <script src="{% static 'js/project.js' %}"></script>
+    <script src="{% static 'js/posts/post_mwajiri.js' %}"></script>
+</head>
+<body>
+
+<main>
+
+    <style>
+        body {
+            /*height: 100vh;*/
+            background-color: lightgrey;
+        }
+
+    </style>
+
+    <div class="main">
 
 
-{% block content %}
-
-
-    <div class="jumbotron jumbotron-fluid text-center">
         <div class="container">
-            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Register as a Client</h1>
 
-            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 40px">
-                Already registered as an Ajira Client? <a href="{% url 'index' %}">Sign in</a>
-            </h1>
-            <h1 class="lead" style="text-align: center; font-weight: 300; margin-top: 20px">
-                Looking to be an Ajiriwa? <a href="{% url 'ajiriwa_reg' %}">Register as an Ajiriwa</a>
-            </h1>
+            <div class="col-md-12" style="padding-top:10%;margin-bottom: 60px">
 
-        </div>
-    </div>
+                <div class="row">
+                    <div class="offset-md-1 col-md-10">
+                        <center>
+                            <div class="btn-group text-center" style="margin-bottom: 60px" data-toggle="buttons">
+                                <label id="ajiriwa" class="btn btn-primary">
+                                    <input type="checkbox" onchange="register_ajiriwa()" autocomplete="off"> Become an
+                                    Ajiriwa
+                                </label>
+                                <label id="mwajiri" class="btn btn-primary active">
+                                    <input type="checkbox" checked autocomplete="off"> Become an Employer
+                                </label>
+                            </div>
+                        </center>
 
-    <div class="container">
-        <div class="col-md-12" style="margin-bottom: 60px">
-            <div class="row">
-                <div class="offset-md-1 col-md-10">
-                    <div class="card" style="padding: 20px">
-            <div class="card-header">
-                <h2 style="font-weight: 300; margin-bottom: 40px">Create a Client Account</h2>
-            </div>
-            <div class="card-block">
+                        <script>
+                            var ajiriwa_checkbox = document.getElementById("ajiriwa");
+                            var mwajiri_checkbox = document.getElementById("mwajiri");
 
-                <form>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="emailAddress">Email address:</label>
-                        <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Email Address">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="firstName">Full name:</label>
-                        <input type="text" class="form-control" id="firstName"  placeholder="Full Name">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="inputPassword">Password:</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="retypedPassword">Re-enter Password:</label>
-                        <input type="password" class="form-control" id="retypedPassword" placeholder="Re-Type Password">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="selectConstituency">Constituency:</label>
-                        <select class="form-control" id="selectConstituency">
-                            <option value="INIT" >Select your Constituency</option>
+                            function register_ajiriwa() {
+                                mwajiri_checkbox.className = "btn btn-primary";
+                                ajiriwa_checkbox.className = "btn btn-primary active";
 
-                            {% for constituency in constituencies %}
-                                <option value="{{constituency.id}}">{{constituency.constituency_name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="selectCounty">County:</label>
-                        <select class="form-control" id="selectCounty">
-                            <option value="INIT">Select your County</option>
-                            {% for county in counties %}
-                                <option value="{{county.id}}">{{county.county_name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: 18px" for="phoneNumber">Phone Number:</label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">+254</span>
-                            <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" aria-describedby="basic-addon1">
+                                window.location.href = "/ajiriwa_reg/";
+                            }
+
+
+                        </script>
+                        <div class="card" style="padding: 20px">
+                            <div class="card-header">
+                                <h2 style="font-weight: 300; margin-bottom: 40px">Create a Client Account</h2>
+                            </div>
+                            <div class="card-block">
+
+                                <div id="message"></div>
+                                <div id="update_message"></div>
+
+                                <form>
+                                    <div id="divEmailAddress" class="form-group">
+                                        <label style="font-size: 18px" for="emailAddress">Email address:</label>
+                                        <input type="email" class="form-control" id="emailAddress"
+                                               aria-describedby="emailHelp" placeholder="Email Address">
+                                        <div id="emailAddress_validate_text" class="form-control-feedback"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="divInputPassword" class="form-group">
+                                                <label style="font-size: 18px" for="inputPassword">Password:</label>
+                                                <input type="password" class="form-control" id="inputPassword"
+                                                       placeholder="Password">
+                                                <div id="inputPassword_validate_text"
+                                                     class="form-control-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div id="divRetypedPassword" class="form-group">
+                                                <label style="font-size: 18px" for="retypedPassword">Re-enter
+                                                    Password:</label>
+                                                <input type="password" class="form-control" id="retypedPassword"
+                                                       placeholder="Re-Type Password">
+                                                <div id="retypedPassword_validate_text"
+                                                     class="form-control-feedback"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: 18px" for="fullName">Full name:</label>
+                                        <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                    </div>
+                                    <div id="divIdNumber" class="form-group">
+                                        <label style="font-size: 18px" for="idNumber">ID Number:</label>
+                                        <input type="number" class="form-control" id="idNumber" placeholder="ID Number">
+                                        <div id="idNumber_validate_text" class="form-control-feedback"></div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label style="font-size: 18px" for="selectCounty">County:</label>
+                                                <select class="form-control" id="selectCounty">
+                                                    <option value="INIT">Select your County</option>
+                                                    {% for county in counties %}
+                                                    <option value="{{county.id}}">{{county.county_name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label style="font-size: 18px"
+                                                       for="selectConstituency">Constituency:</label>
+                                                <select class="form-control" id="selectConstituency">
+                                                    <option value="INIT">Select your Constituency</option>
+
+                                                    {% for constituency in constituencies %}
+                                                    <option value="{{constituency.id}}">
+                                                        {{constituency.constituency_name}}
+                                                    </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label style="font-size: 18px" for="phoneNumber">Phone Number:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">+254</span>
+                                            <input type="number" class="form-control" id="phoneNumber"
+                                                   placeholder="Phone Number" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" id="terms_conditions" type="checkbox"
+                                                   value="">
+                                            I have read and accept the Ajira &nbsp; <a href="#"> Membership
+                                            Agreement.</a>
+
+                                        </label>
+                                        <div id="terms_conditions_validate_text" class="form-control-feedback"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" onclick="reg_mwajiri()" class="btn btn-primary btn-lg btn-block"
+                                   style="background-color: #2f5597;">Register</a>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{% url 'index' %}" class="btn btn-outline-info btn-lg btn-block"
+                                           style="margin-top: 20px;border: 1px solid #2196f3;">Log In</a>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <a href="{% url 'home' %}" class="btn btn-outline-success btn-lg btn-block"
+                                           style="margin-top: 20px; border: 1px solid #4caf50;">Back Home</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" id="terms_conditions" type="checkbox" value="">
-                            I have read and accept the Ajira &nbsp; <a href="#"> Membership Agreement.</a>
-
-                        </label>
-                        <div id="terms_conditions_validate_text" class="form-control-feedback"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Register</a>
-            </div>
-        </div>
                 </div>
             </div>
+
         </div>
 
 
     </div>
 
 
-{% endblock %}
+</main>
+
+</body>
+</html>

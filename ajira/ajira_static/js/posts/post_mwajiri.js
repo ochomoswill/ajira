@@ -1,5 +1,5 @@
 /**
- * Created by ochomoswill on 5/23/17.
+ * Created by ochomoswill on 6/2/17.
  */
 
 var loader = ""+
@@ -7,7 +7,7 @@ var loader = ""+
         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>" +
         "<span aria-hidden='true'>&times;</span>" +
         "</button>" +
-        "<strong>Kindly wait as we process the data...</strong>" +
+        "<strong>KIndly wait as we process the data...</strong>" +
         "</div>";
 
 
@@ -58,28 +58,10 @@ function post(data, url) {
 
             var obj = JSON.parse(request.responseText);
 
-            if(obj.errormsg)
-            {
-                document.getElementById("message").innerHTML = "";
-                document.getElementById("update_message").innerHTML = alert(obj.errormsg);
-            }
-            else
-            {
+            document.getElementById("message").innerHTML = "";
+            document.getElementById("update_message").innerHTML = alert(obj.data);
 
-                document.getElementById("message").innerHTML = "";
-                document.getElementById("update_message").innerHTML = alert(obj.successful);
-                console.log(obj.usertype);
 
-                if(obj.usertype == "ajiriwa")
-                {
-                    window.location="/my_profile/" + obj.slug ;
-                }else if(obj.usertype == "mwajiri")
-                {
-                    //alert("Still under construction!");
-                    window.location="/my_mwajiri_profile/" + obj.slug ;
-                }
-
-            }
 
             console.log("posted the data");
         }
@@ -99,17 +81,15 @@ function resetLoader()
     document.getElementById("message").innerHTML = "";
 }
 
-
-function fetch_post_login_data(){
+function reg_mwajiri(){
 
     setLoader();
 
     // var url = "{% url 'register_ajiriwa' %}";
-    var url = "/login_view/";
+    var url = "/register_mwajiri/";
 
 
     /* ENTERED FIELD DATA */
-
     var email_address = document.getElementById("emailAddress").value;
     var atpos = email_address.indexOf("@");
     var dotpos = email_address.lastIndexOf(".");
@@ -124,6 +104,29 @@ function fetch_post_login_data(){
     }
 
 
+    var name = document.getElementById("fullName").value;
+
+
+    var idNumber = document.getElementById("idNumber").value;
+    if(idNumber.length < 8)
+    {
+        document.getElementById("divIdNumber").className = "form-group has-danger";
+        document.getElementById("idNumber_validate_text").innerHTML = "ID Number must be 6 digits!";
+        resetLoader();
+        return;
+        if(idNumber.length > 8)
+        {
+            document.getElementById("divIdNumber").className = "form-group has-danger";
+            document.getElementById("idNumber_validate_text").innerHTML = "ID Number must be 6 digits!";
+            return;
+        }
+    }else{
+        document.getElementById("divIdNumber").className = "form-group";
+        document.getElementById("idNumber_validate_text").innerHTML = "";
+    }
+
+
+
     var pwd = document.getElementById("inputPassword").value;
     if(pwd.length < 8){
         document.getElementById("divInputPassword").className = "form-group has-danger";
@@ -135,11 +138,43 @@ function fetch_post_login_data(){
         document.getElementById("inputPassword_validate_text").innerHTML = "";
     }
 
+
+    var confirm_pwd = document.getElementById("retypedPassword").value;
+    if (confirm_pwd != pwd) {
+        document.getElementById("divRetypedPassword").className = "form-group has-danger";
+        document.getElementById("retypedPassword_validate_text").innerHTML = "Passwords don't not match!";
+        resetLoader();
+        return;
+    }else{
+        document.getElementById("divRetypedPassword").className = "form-group";
+        document.getElementById("retypedPassword_validate_text").innerHTML = "";
+    }
+
+
+    /*getting the landlord name from dropdown list*/
+    var selectConstituencyObj = document.getElementById("selectConstituency");
+    var constituency = selectConstituencyObj.options[selectConstituencyObj.selectedIndex].value;
+
+
+    /*getting the landlord name from dropdown list*/
+    var selectCountyObj = document.getElementById("selectCounty");
+    var county = selectCountyObj.options[selectCountyObj.selectedIndex].value;
+
+
+    var phoneNumber = document.getElementById("phoneNumber").value;
+    var termsCondition = document.getElementById("terms_conditions").value;
+
+
     /* END OF ENTERED FIELD DATA */
 
 
     var data = "&email_address="+email_address+
-                "&pwd="+pwd;
+        "&name="+name+
+        "&idNumber="+idNumber+
+        "&pwd="+pwd+
+        "&constituency="+constituency+
+        "&county="+county+
+        "&phoneNumber="+phoneNumber;
 
     post(data,url);
 
@@ -149,13 +184,31 @@ function fetch_post_login_data(){
     }, 3000);
 
     //reset form;
-    reset_login_form();
+    reset_mwajiri_registration_form();
 }
 
 
-function reset_login_form()
+function reset_mwajiri_registration_form()
 {
     document.getElementById("emailAddress").value = "";
 
+    document.getElementById("fullName").value = "";
+
+    document.getElementById("idNumber").value = "";
+
     document.getElementById("inputPassword").value = "";
+
+    document.getElementById("retypedPassword").value = "";
+
+    /*getting the constituency from dropdown list*/
+    var selectConstituencyObj = document.getElementById("selectConstituency");
+    selectConstituencyObj.value = "INIT";
+
+    /*getting the county from dropdown list*/
+    var selectCountyObj = document.getElementById("selectCounty");
+    selectCountyObj.value = "INIT";
+
+    document.getElementById("phoneNumber").value = "";
+
+    document.getElementById("terms_conditions").checked = false;
 }

@@ -60,6 +60,8 @@ class Experience(models.Model):
     worker_id = models.ForeignKey(Worker, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=50)
     job_description = models.TextField()
+    company = models.TextField(blank=True)
+    job_location = models.TextField(blank=True)
     from_date = models.DateField(default=timezone.now)
     to_date = models.DateField(default=timezone.now)
     approval_status = models.CharField(max_length=20, choices=APPROVAL_STATUS, default='pending')

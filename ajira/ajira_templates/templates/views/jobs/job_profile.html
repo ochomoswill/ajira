@@ -30,21 +30,18 @@
             <div class="row" style="margin-bottom: 20px">
                 <div class="col-md-9">
                     <div class="row" style="margin-bottom: 20px">
-                        {% for job in jobs %}
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="card">
                               <div class="card-block">
-                                  <a href="{{job.get_absolute_url}}">
-                                    <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                      <h3 class="card-title">{{ job.job_title}}</h3>
-                                      <p class="card-text">{{job.constituency_id}}, {{job.county_id}}</p>
-                                      <hr/>
-                                    <p class="card-text">Today</p>
-                                  </a>
+                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
+                                    <h3 class="card-title">{{ job.job_title}}</h3>
+                                    <p class="card-text">{{job.constituency_id}}, {{job.county_id}}</p>
+                                    <p class="card-text">{{job.job_description}}</p>
+                                    <hr/>
+                                  <p class="card-text">Today</p>
                               </div>
                             </div>
                         </div>
-                        {% endfor %}
                         <!--<div class="col-md-4">
                             <div class="card">
                               <div class="card-block">
@@ -234,8 +231,7 @@
 
             <div class="row" style="margin-bottom: 60px; margin-top: 60px">
                 <div class="offset-lg-4 col-lg-4 text-center">
-                    {% include 'paginator.html' with page=jobs %}
-                    <!--<a href="#" style="color: #2f5597;text-transform: uppercase; font-weight: 500; font-size: 21px">Browse More Jobs</a>-->
+                    <a href="#" style="color: #2f5597;text-transform: uppercase; font-weight: 500; font-size: 21px">Browse More Jobs</a>
                 </div>
             </div>
         </div>

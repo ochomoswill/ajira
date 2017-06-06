@@ -9,6 +9,7 @@
 
 
 {% block content %}
+    <script src="{% static 'js/posts/post_recommendation.js' %}"></script>
 
 
     <div class="jumbotron jumbotron-fluid text-center">
@@ -22,10 +23,13 @@
 
         <div class="col-md-12" style="margin-bottom: 60px">
             <div class="row">
-                <div class="offset-md-1 col-md-10">
+                <div class="offset-md-1 col-md-8">
                     <div class="card" style="padding: 20px">
                         <div class="card-header">
                             <h2 style="font-weight: 300; margin-bottom: 40px">Make Recommendation Form</h2>
+                            {% for worker in workers %}
+                            <p class="lead" style="margin-top: -20px">The recommendation will appear on {{worker.worker_name}}'s profile</p>
+                            {% endfor %}
                         </div>
                         <div class="card-block">
 
@@ -34,38 +38,125 @@
 
                             <form method="post">
                                 {% csrf_token %}
+                                <div class="row">
+                                    {% for worker in workers %}
+                                    <div class="col-md-12" style="margin-top: 20px;margin-bottom: 40px">
+                                        <!--<hr style="border: 1px solid #0A246A">-->
+                                        <img class="img-thumbnail" style="margin-bottom: 10px" width="80px" src="{{ worker.worker_avatar.url }}">
+                                        <h4>{{worker.worker_name}}</h4>
+                                        <!--<hr style="border: 1px solid #0A246A">-->
+                                    </div>
+
+                                    {% endfor %}
+
+                                </div>
+
                                 <div id="divJobTitle" class="form-group">
                                     <label style="font-size: 18px" for="jobTitle">Position or Skills:</label>
-                                    <input type="text" class="form-control" id="jobTitle" placeholder="Job Title">
+                                    <select class="form-control" id="jobTitle">
+                                        <option value="INIT" >Select Position or Skills</option>
+
+                                        {% for experience in experiences %}
+                                            <option value="{{experience.id}}">{{experience.job_title}}</option>
+                                        {% endfor %}
+                                    </select>
                                     <div id="jobTitle_validate_text" class="form-control-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label style="font-size: 18px" for="relationship">Relationship:</label>
-                                    <input type="text" class="form-control" id="relationship" placeholder="relationship">
+                                    <select class="form-control" id="relationship">
+                                        <option value="INIT" >Select Relationship</option>
+                                        {%for worker in workers%}
+                                        <option value="1">You managed {{worker.worker_name}} directly.</option>
+                                        <option value="2">You were senior to {{worker.worker_name}}.</option>
+                                        <option value="3">You were a client of {{worker.worker_name}}.</option>
+                                        <option value="4">You taught or mentored {{worker.worker_name}}.</option>
+                                        {% endfor %}
+
+                                    </select>
                                 </div>
-                                <div id="divEmployerID" class="form-group">
-                                    <label style="font-size: 18px" for="employerID">Employer ID:</label>
-                                    <input type="number" class="form-control" id="employerID" placeholder="Employer ID">
-                                </div>
-                                <div id="divWorkerName" class="form-group">
+                                <!--<div id="divEmployerID" class="form-group">-->
+                                    <!--<label style="font-size: 18px" for="employerID">Employer ID:</label>-->
+                                    <!--<input type="number" class="form-control" id="employerID" placeholder="Employer ID">-->
+                                <!--</div>-->
+                                <!--<div id="divWorkerName" class="form-group">
                                     <label style="font-size: 18px" for="workerName">Worker Name:</label>
-                                    <input type="text" class="form-control" id="workerName" placeholder="Worker Name">
-                                </div>
+                                    <select class="form-control" id="workerName">
+                                        <option value="INIT" >Select Recommendee</option>
+
+                                        {% for worker in workers %}
+                                            <option value="{{worker.id}}">{{worker.worker_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>-->
                                 <div class="form-group">
                                     <label style="font-size: 18px" for="remark">Remark:</label>
                                     <textarea class="form-control" id="remark"></textarea>
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label style="font-size: 18px" for="tag">Tag:</label>
                                     <input type="text" class="form-control" id="tag" placeholder="Tag">
-                                </div>
+                                </div>-->
                             </form>
                         </div>
                         <div class="card-footer">
-                                <a href="#" id="submit_btn" onclick="" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Recommend</a>
+                                <a href="#" id="submit_btn" onclick="recommend_ajiriwa()" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Recommend</a>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
+                               class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                     src="{% static 'images/workers/useraccount.svg' %}">
+                                My Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/edit_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
+                               class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                     src="{% static 'images/workers/mode_edit.svg' %}">
+                                Edit Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/message.svg' %}">
+                                View Notifications
+                                <span  style="margin-left: 120px" class="badge badge-default badge-pill">2</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'recommend' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Make Recommendation
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'post_job' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Post Jobs
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'view_job' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                View Jobs
+                            </a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
             </div>
         </div>
 

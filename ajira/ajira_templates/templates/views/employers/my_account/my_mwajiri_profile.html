@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+My Profile
+{% endblock %}
+
+
+{% block content %}
+<link href="{% static 'css/cdn_ajira_timeline.css' %}" rel="stylesheet">
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+        <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">My Profile</h1>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="col-md-12">
+
+
+        <div class="row">
+            <div class="offset-md-1 col-md-8">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card" style="margin-bottom: 60px">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-right: 40px">
+                                        <img class="img-thumbnail" width="500px"
+                                             src="{{ employer.employer_avatar.url }}">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h4 style="margin-top: 30px" class="card-title">I'm <span
+                                                style="font-weight: bold">{{ employer.employer_name }}</span>
+                                        </h4>
+                                        <hr>
+
+                                        <p class="card-text"><span
+                                                class="profile_text_titles">County:&emsp;&emsp;&emsp;</span> {{employer.county_id }}
+                                        </p>
+                                        <p class="card-text"><span
+                                                class="profile_text_titles">Constituency:&emsp;&emsp;&emsp;</span> {{employer.constituency_id }}
+                                        </p>
+                                        <a href="#" class="btn btn-primary"
+                                           style="margin-top: 20px; background: #4a58a5">Contact
+                                            Employer</a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <!--<li class="list-group-item">
+                        <div>
+                            <h4 class="card-title">About</h4>
+                            <p class="card-text">{{ employees.worker_bio }}</p>
+
+
+                            &lt;!&ndash;<a href="#" class="btn btn-primary">Go somewhere</a>&ndash;&gt;
+                        </div>
+                    </li>-->
+
+
+                    {% if recommendations %}
+                    <li class="list-group-item">
+                        <div>
+                            <h4 class="card-title">Recommendations</h4>
+
+                            <div class="card card-outline-primary mb-3">
+                                <div class="card-block">
+                                    <blockquote class="card-blockquote">
+                                        <h4 style="margin-top: 30px" class="card-title"><span
+                                                style="font-weight: bold">{{ employees.worker_name }}</span>
+                                        </h4>
+                                        <hr>
+                                        <p class="card-text"><span class="profile_text_titles">Relationship:&emsp;&emsp;&emsp;&emsp; </span>
+                                            {{employees.skills }}</p>
+                                        <p class="card-text"><span class="profile_text_titles">Skills or Position:&emsp;&emsp;&nbsp;</span>
+                                            Nairobi, Kenya.</p>
+                                        <p class="card-text"><span class="profile_text_titles">Remark:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;</span>
+                                            Plumbing and Chief Chef</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+
+                            <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
+                               class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                     src="{% static 'images/workers/useraccount.svg' %}">
+                                My Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/edit_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
+                               class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                     src="{% static 'images/workers/mode_edit.svg' %}">
+                                Edit Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/message.svg' %}">
+                                View Notifications
+                                <span  style="margin-left: 120px" class="badge badge-default badge-pill">2</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'recommend' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Make Recommendation
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'post_job' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Post Jobs
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'view_job' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                View Jobs
+                            </a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

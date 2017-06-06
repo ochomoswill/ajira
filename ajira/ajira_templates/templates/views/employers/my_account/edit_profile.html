@@ -33,47 +33,6 @@ Edit Profile
 
         <div class="row">
             <div class="offset-md-1 col-md-8">
-
-                <!--<div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card" style="margin-bottom: 60px">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col-md-4" style="margin-right: 40px">
-                                        <img class="img-thumbnail" width="500px"
-                                             src="{{ employees.worker_avatar.url }}">
-                                    </div>
-                                    <div class="col-md-5">
-                                        <h4 style="margin-top: 30px" class="card-title">I'm <span
-                                                style="font-weight: bold">{{ employees.worker_name }}</span>
-                                        </h4>
-                                        <hr>
-                                        <p class="card-text"><span class="profile_text_titles">Skills:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;</span>
-                                            {{employees.skills }}</p>
-                                        <p class="card-text"><span
-                                                class="profile_text_titles">Location:&emsp;&emsp;&emsp;</span> Nairobi,
-                                            Kenya.
-                                        </p>
-                                        <p class="card-text"><span
-                                                class="profile_text_titles">Services:&emsp;&emsp;&emsp;&nbsp;</span>
-                                            Plumbing
-                                            and Chief Chef</p>
-                                        <a href="#" class="btn btn-primary"
-                                           style="margin-top: 20px; background: #4a58a5">Contact
-                                            Ajiriwa</a>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>-->
-
-
                 <div class="card" style="margin-bottom: 60px">
                     <div class="">
                         <!-- Nav tabs -->
@@ -83,15 +42,10 @@ Edit Profile
                                    onclick="assignProfileActive()"
                                    href="#profilePhoto" role="tab">Change Profile Photo</a>
                             </li>
-                            <li class="nav-item">
+                            <!--<li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" id="editProfileTab" onclick="assignEditActive()"
                                    href="#editProfile" role="tab">Edit Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" id="addExperienceTab"
-                                   onclick="assignExperienceActive()"
-                                   href="#addExperience" role="tab">Add Experience</a>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
 
@@ -111,7 +65,7 @@ Edit Profile
 
                                             <div class="col-md-4" style="margin-bottom: 20px">
                                                 <img class="img-thumbnail" width="300px"
-                                                     src="{{ employees.worker_avatar.url }}">
+                                                     src="{{ employers.employer_avatar.url }}">
                                             </div>
 
 
@@ -135,7 +89,7 @@ Edit Profile
                                 </div>
                             </div>
 
-                            <div class="tab-pane" id="editProfile" role="tabpanel">
+                            <!--<div class="tab-pane" id="editProfile" role="tabpanel">
                                 <div class="container">
 
 
@@ -267,71 +221,7 @@ Edit Profile
                                     </div>
 
                                 </div>
-                            </div>
-
-                            <div class="tab-pane" id="addExperience" role="tabpanel">
-                                <div class="container">
-
-                                    <div class="" style="padding: 20px">
-                                        <div class="card-header">
-                                            <h2 style="font-weight: 300; margin-bottom: 40px">Add Experience</h2>
-                                        </div>
-                                        <div class="card-block">
-
-                                            <div id="experience_message"></div>
-                                            <div id="experience_update_message"></div>
-
-                                            <form method="post">
-                                                {% csrf_token %}
-                                                <div class="form-group">
-                                                    <label style="font-size: 18px" for="jobTitle">Title:</label>
-                                                    <input  type="text" class="form-control" id="jobTitle"
-                                                           placeholder="Lead Cook">
-                                                    <div id="jobTitle_validate_text"
-                                                         class="form-control-feedback"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label style="font-size: 18px" for="company">Company or Organisation:</label>
-                                                    <input type="text" class="form-control" id="company"
-                                                           placeholder="Mudasa Academy or University of Nairobi">
-
-                                                </div>
-                                                <div class="form-group">
-                                                    <label style="font-size: 18px" for="location">Location:</label>
-                                                    <input type="text" class="form-control" id="location"
-                                                           placeholder="University Way, Nairobi">
-
-                                                </div>
-                                                <div class="form-group">
-                                                    <label style="font-size: 18px" for="fromDate">From:</label>
-                                                    <input type="date" class="form-control" id="fromDate"
-                                                           placeholder="2015-1-23">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label style="font-size: 18px" for="toDate">To:</label>
-                                                    <input type="date" class="form-control" id="toDate"
-                                                           placeholder="2017-12-23">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label style="font-size: 18px"
-                                                           for="jobDescription">Description:</label>
-                                                    <textarea class="form-control" id="jobDescription"
-                                                              placeholder="I was the lead chief chef at Mudasa Academy. I was incharge of all other cooks.."></textarea>
-                                                </div>
-                                            </form>
-
-
-                                        </div>
-                                        <div class="card-footer">
-                                            <a href="#" id="addExperienceBtn" onclick="getAddExperienceValues()"
-                                               class="btn btn-primary btn-lg btn-block"
-                                               style="background-color: #2f5597;">Add Experience</a>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -339,19 +229,12 @@ Edit Profile
                 <script>
                     function assignProfileActive() {
                         document.getElementById('profilePhotoTab').classList.add('active');
-                        document.getElementById('editProfileTab').classList.remove('active');
-                        document.getElementById('addExperienceTab').classList.remove('active');
+                        /*document.getElementById('editProfileTab').classList.remove('active');*/
                     }
-                    function assignEditActive() {
+                    /*function assignEditActive() {
                         document.getElementById('editProfileTab').classList.add('active');
                         document.getElementById('profilePhotoTab').classList.remove('active');
-                        document.getElementById('addExperienceTab').classList.remove('active');
-                    }
-                    function assignExperienceActive() {
-                        document.getElementById('addExperienceTab').classList.add('active');
-                        document.getElementById('profilePhotoTab').classList.remove('active');
-                        document.getElementById('editProfileTab').classList.remove('active');
-                    }
+                    }     */
                 </script>
 
             </div>
@@ -359,7 +242,7 @@ Edit Profile
                 <div class="card">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <a href="/my_profile/{{ request.session.member_slug }}/" style="background: none"
+                            <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
                                      src="{% static 'images/workers/useraccount.svg' %}">
@@ -367,7 +250,7 @@ Edit Profile
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/edit_profile/{{ request.session.member_slug }}/" style="background: none"
+                            <a href="/edit_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
                                      src="{% static 'images/workers/mode_edit.svg' %}">
@@ -380,6 +263,20 @@ Edit Profile
                                      src="{% static 'images/workers/message.svg' %}">
                                 View Notifications
                                 <span  style="margin-left: 120px" class="badge badge-default badge-pill">2</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'recommend' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Make Recommendation
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'post_job' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Post Jobs
                             </a>
                         </li>
                         <li class="list-group-item">

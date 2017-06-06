@@ -1,5 +1,5 @@
 /**
- * Created by ochomoswill on 5/23/17.
+ * Created by ochomoswill on 6/2/17.
  */
 
 var loader = ""+
@@ -7,7 +7,7 @@ var loader = ""+
         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>" +
         "<span aria-hidden='true'>&times;</span>" +
         "</button>" +
-        "<strong>Kindly wait as we process the data...</strong>" +
+        "<strong>KIndly wait as we process the data...</strong>" +
         "</div>";
 
 
@@ -58,28 +58,10 @@ function post(data, url) {
 
             var obj = JSON.parse(request.responseText);
 
-            if(obj.errormsg)
-            {
-                document.getElementById("message").innerHTML = "";
-                document.getElementById("update_message").innerHTML = alert(obj.errormsg);
-            }
-            else
-            {
+            document.getElementById("message").innerHTML = "";
+            document.getElementById("update_message").innerHTML = alert(obj.data);
 
-                document.getElementById("message").innerHTML = "";
-                document.getElementById("update_message").innerHTML = alert(obj.successful);
-                console.log(obj.usertype);
 
-                if(obj.usertype == "ajiriwa")
-                {
-                    window.location="/my_profile/" + obj.slug ;
-                }else if(obj.usertype == "mwajiri")
-                {
-                    //alert("Still under construction!");
-                    window.location="/my_mwajiri_profile/" + obj.slug ;
-                }
-
-            }
 
             console.log("posted the data");
         }
@@ -99,47 +81,36 @@ function resetLoader()
     document.getElementById("message").innerHTML = "";
 }
 
-
-function fetch_post_login_data(){
+function post_job_details(){
 
     setLoader();
 
-    // var url = "{% url 'register_ajiriwa' %}";
-    var url = "/login_view/";
+    var url = "/post_job_details/";
 
 
     /* ENTERED FIELD DATA */
+    var jobTitle = document.getElementById("jobTitle").value;
+    var jobDescription = document.getElementById("jobDescription").value;
 
-    var email_address = document.getElementById("emailAddress").value;
-    var atpos = email_address.indexOf("@");
-    var dotpos = email_address.lastIndexOf(".");
-    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email_address.length) {
-        document.getElementById("divEmailAddress").className = "form-group has-danger";
-        document.getElementById("emailAddress_validate_text").innerHTML = "The email address is invalid!";
-        resetLoader();
-        return;
-    }else{
-        document.getElementById("divEmailAddress").className = "form-group";
-        document.getElementById("emailAddress_validate_text").innerHTML = "";
-    }
+    /*getting the constituency name from dropdown list*/
+    var selectConstituencyObj = document.getElementById("selectConstituency");
+    var constituency = selectConstituencyObj.options[selectConstituencyObj.selectedIndex].value;
+
+    /*getting the county name from dropdown list*/
+    var selectCountyObj = document.getElementById("selectCounty");
+    var county = selectCountyObj.options[selectCountyObj.selectedIndex].value;
+
+    // var phoneNumber = document.getElementById("phoneNumber").value;
 
 
-    var pwd = document.getElementById("inputPassword").value;
-    if(pwd.length < 8){
-        document.getElementById("divInputPassword").className = "form-group has-danger";
-        document.getElementById("inputPassword_validate_text").innerHTML = "Password must be at least 8 characters long!";
-        resetLoader();
-        return;
-    }else{
-        document.getElementById("divInputPassword").className = "form-group";
-        document.getElementById("inputPassword_validate_text").innerHTML = "";
-    }
 
     /* END OF ENTERED FIELD DATA */
 
 
-    var data = "&email_address="+email_address+
-                "&pwd="+pwd;
+    var data = "&jobTitle="+jobTitle+
+        "&jobDescription="+jobDescription+
+        "&constituency="+constituency+
+        "&county="+county;
 
     post(data,url);
 
@@ -149,13 +120,21 @@ function fetch_post_login_data(){
     }, 3000);
 
     //reset form;
-    reset_login_form();
+    reset_post_job_form();
 }
 
 
-function reset_login_form()
+function reset_post_job_form()
 {
-    document.getElementById("emailAddress").value = "";
+    document.getElementById("jobTitle").value = "";
+    document.getElementById("jobDescription").value = "";
 
-    document.getElementById("inputPassword").value = "";
+    var selectConstituencyObj = document.getElementById("selectConstituency");
+    selectConstituencyObj.value = "INIT";
+
+    var selectCountyObj = document.getElementById("selectCounty");
+    selectCountyObj.value = "INIT";
+
+    document.getElementById("phoneNumber").value = "";
+
 }

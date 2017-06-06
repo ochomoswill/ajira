@@ -1,6 +1,5 @@
-<style>
+<!--<style>
     .pagination {
-        display: inline-block;
         padding-left: 0;
         margin: 20px 0;
         margin-left: 29%;
@@ -13,45 +12,54 @@
         background-color: #45a416;
         border-color: #45a416;
     }
-    .pagination > li > a, .pagination > li > span {
-        position: relative;
-        float: left;
-        padding: 6px 12px;
-        margin-left: -1px;
-        line-height: 1.42857143;
-        color: #45a416;
-        text-decoration: none;
-        background-color: #fff;
-        border: 1px solid #ddd;
-    }
-</style>
+
+</style>-->
 
 <nav aria-label="Page navigation">
     {% if page.has_other_pages %}
-        <ul class="pagination">
+        <ul class="pagination justify-content-center">
             {% if page.has_previous %}
-                <li>
-                <a aria-label="Previous" href="?page={{ page.previous_page_number }}">&laquo;</a>
+                <li class="page-item">
+                <a class="page-link" aria-label="Previous" href="?page={{ page.previous_page_number }}">&laquo;</a>
                 </li>
             {% else %}
-                <li class="disabled"><span>&laquo;</span></li>
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
             {% endif %}
             {% for pages in page.paginator.page_range %}
                 {% if page.number == pages %}
-                     <li class="active"><span>{{ pages }}<span class="sr-only">(current)</span></span></li>
+                     <li class="page-item active"><span class="page-link">{{ pages }}<span class="sr-only">(current)</span></span></li>
                 {% else %}
-                     <li><a href="?page={{ pages }}">{{ pages }}</a></li>
+                     <li class="page-item"><a class="page-link" href="?page={{ pages }}">{{ pages }}</a></li>
                 {% endif %}
 
             {% endfor %}
             {% if page.has_next%}
-                <li>
-                <a aria-label="Next" href="?page={{ page.next_page_number }}">&raquo;</a>
+                <li class="page-item">
+                <a class="page-link" aria-label="Next" href="?page={{ page.next_page_number }}">&raquo;</a>
                 </li>
             {% else %}
-                <li class="disabled"><span>&raquo;</span></li>
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
             {% endif %}
 
         </ul>
     {% endif %}
 </nav>
+
+<!--
+<span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>-->

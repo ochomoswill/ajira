@@ -68,11 +68,26 @@
         </script>
 
         {% if user.is_authenticated %}
-              <form class="form-inline my-2 my-lg-0">
+
+
+            {% if request.session.member_usertype == "mwajiri" %}
+                <form class="form-inline my-2 my-lg-0">
+                  <!--<h1>{{ request.session.member_slug }}</h1>-->
+                  <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" class="btn btn-outline-success my-2 my-sm-0" >My Profile</a>
+                  <a href="{% url 'logout_view' %}" class="btn btn-outline-danger my-2 my-sm-0" >Log Out</a>
+              </form>
+
+            {% elif request.session.member_usertype == "ajiriwa" %}
+                <form class="form-inline my-2 my-lg-0">
                   <!--<h1>{{ request.session.member_slug }}</h1>-->
                   <a href="/my_profile/{{ request.session.member_slug }}/" class="btn btn-outline-success my-2 my-sm-0" >My Profile</a>
                   <a href="{% url 'logout_view' %}" class="btn btn-outline-danger my-2 my-sm-0" >Log Out</a>
               </form>
+
+            {% endif %}
+
+
+
             {% else %}
               <form class="form-inline my-2 my-lg-0">
                   <a href="{% url 'ajiriwa_reg' %}" class="btn btn-outline-info my-2 my-sm-0" >Sign Up</a>
@@ -176,5 +191,17 @@
     </section>
 
 </footer>
+
+<!--Script for the dropdowns-->
+<script>
+    $(document).ready(function(){
+      $('.dropdown-toggle').dropdown().on("click", function(e){
+        $(this).next('.dropdown-menu').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+</script>
+
 </body>
 </html>

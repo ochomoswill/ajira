@@ -1,5 +1,5 @@
 /**
- * Created by ochomoswill on 5/23/17.
+ * Created by ochomoswill on 6/2/17.
  */
 
 var loader = ""+
@@ -7,7 +7,7 @@ var loader = ""+
         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>" +
         "<span aria-hidden='true'>&times;</span>" +
         "</button>" +
-        "<strong>Kindly wait as we process the data...</strong>" +
+        "<strong>KIndly wait as we process the data...</strong>" +
         "</div>";
 
 
@@ -58,28 +58,10 @@ function post(data, url) {
 
             var obj = JSON.parse(request.responseText);
 
-            if(obj.errormsg)
-            {
-                document.getElementById("message").innerHTML = "";
-                document.getElementById("update_message").innerHTML = alert(obj.errormsg);
-            }
-            else
-            {
+            document.getElementById("message").innerHTML = "";
+            document.getElementById("update_message").innerHTML = alert(obj.data);
 
-                document.getElementById("message").innerHTML = "";
-                document.getElementById("update_message").innerHTML = alert(obj.successful);
-                console.log(obj.usertype);
 
-                if(obj.usertype == "ajiriwa")
-                {
-                    window.location="/my_profile/" + obj.slug ;
-                }else if(obj.usertype == "mwajiri")
-                {
-                    //alert("Still under construction!");
-                    window.location="/my_mwajiri_profile/" + obj.slug ;
-                }
-
-            }
 
             console.log("posted the data");
         }
@@ -99,47 +81,36 @@ function resetLoader()
     document.getElementById("message").innerHTML = "";
 }
 
-
-function fetch_post_login_data(){
+function recommend_ajiriwa(){
 
     setLoader();
 
     // var url = "{% url 'register_ajiriwa' %}";
-    var url = "/login_view/";
+    var url = "/make_recommendation/";
 
 
     /* ENTERED FIELD DATA */
+    var jobTitleObj = document.getElementById("jobTitle");
+    var jobTitle = jobTitleObj.options[jobTitleObj.selectedIndex].text;
 
-    var email_address = document.getElementById("emailAddress").value;
-    var atpos = email_address.indexOf("@");
-    var dotpos = email_address.lastIndexOf(".");
-    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email_address.length) {
-        document.getElementById("divEmailAddress").className = "form-group has-danger";
-        document.getElementById("emailAddress_validate_text").innerHTML = "The email address is invalid!";
-        resetLoader();
-        return;
-    }else{
-        document.getElementById("divEmailAddress").className = "form-group";
-        document.getElementById("emailAddress_validate_text").innerHTML = "";
-    }
+    var relationshipObj = document.getElementById("relationship");
+    var relationship = relationshipObj.options[relationshipObj.selectedIndex].text;
+    // var employerID = document.getElementById("employerID").value;
 
 
-    var pwd = document.getElementById("inputPassword").value;
-    if(pwd.length < 8){
-        document.getElementById("divInputPassword").className = "form-group has-danger";
-        document.getElementById("inputPassword_validate_text").innerHTML = "Password must be at least 8 characters long!";
-        resetLoader();
-        return;
-    }else{
-        document.getElementById("divInputPassword").className = "form-group";
-        document.getElementById("inputPassword_validate_text").innerHTML = "";
-    }
+
+    var remark = document.getElementById("remark").value;
+    var tag = jobTitle;
+
+
 
     /* END OF ENTERED FIELD DATA */
 
 
-    var data = "&email_address="+email_address+
-                "&pwd="+pwd;
+    var data = "&jobTitle="+jobTitle+
+        "&relationship="+relationship+
+        "&remark="+remark+
+        "&tag="+tag;
 
     post(data,url);
 
@@ -149,13 +120,19 @@ function fetch_post_login_data(){
     }, 3000);
 
     //reset form;
-    reset_login_form();
+    reset_recommendation_form();
 }
 
 
-function reset_login_form()
+function reset_recommendation_form()
 {
-    document.getElementById("emailAddress").value = "";
+    document.getElementById("jobTitle").value = "";
+    document.getElementById("relationship").value = "";
 
-    document.getElementById("inputPassword").value = "";
+    var selectRecommendeeObj = document.getElementById("workerName");
+    selectRecommendeeObj.options[selectRecommendeeObj.selectedIndex].value = "INIT";
+
+    document.getElementById("remark").value = "";
+    document.getElementById("tag").value = "";
+
 }

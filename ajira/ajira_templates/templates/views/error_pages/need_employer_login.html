@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+    <title>
+        Ajira | {% block title %}{% endblock %}
+    </title>
+
+    <link href="{% static 'css/font_awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'css/material.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/docs.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/cdn_ajira_custom.css' %}" rel="stylesheet">
+
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/material.js' %}"></script>
+    <script src="{% static 'js/project.js' %}"></script>
+</head>
+<body>
+
+<main>
+
+    <style>
+        .main {
+            height: 100vh;
+            background-color: lightgrey;
+        }
+
+    </style>
+
+    <div class="main">
+
+
+            <div class="container">
+                <div class="col-md-12" style="padding-top: 60px; margin-bottom:60px">
+                <div >
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img class="img-fluid" src="/ajira_static/images/logo_smallest.png"/>
+                    </a>
+                </div>
+                </div>
+                <div class="col-md-12" style="margin-top:25% ">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img style="margin-top: -26%" class="img-fluid" src="{% static 'images/error/requirelogin.png' %}">
+                        </div>
+
+                        <div class="col-md-7">
+                            <h1>Something's wrong here...</h1>
+                            <h4 style="margin-top: 20px">Sorry! You need to be logged in as an <strong>Employer</strong> to access this page. Click on Log In to log into your account.</h4>
+                            <div style="margin-top: 20px" class="row">
+                                <div class="col-md-3">
+                                    <a href="#" onclick="history.go(-1);return true;" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;background: #4a58a5">Back</a>
+                                </div>
+                                <div class="col-md-3">
+
+                                    <a href="{% url 'index' %}" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px; background: #4a58a5">Log In</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+
+</main>
+
+</body>
+</html>

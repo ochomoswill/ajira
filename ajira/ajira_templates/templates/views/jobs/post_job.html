@@ -8,7 +8,7 @@
 
 
 {% block content %}
-
+    <script src="{% static 'js/posts/post_job.js' %}"></script>
 
     <div class="jumbotron jumbotron-fluid text-center">
         <div class="container">
@@ -21,7 +21,7 @@
 
         <div class="col-md-12" style="margin-bottom: 60px">
             <div class="row">
-                <div class="offset-md-1 col-md-10">
+                <div class="offset-md-1 col-md-8">
                     <div class="card" style="padding: 20px">
                         <div class="card-header">
                             <h2 style="font-weight: 300; margin-bottom: 40px">Post a Job</h2>
@@ -38,14 +38,11 @@
                                     <input type="text" class="form-control" id="jobTitle" placeholder="Job Title">
                                     <div id="jobTitle_validate_text" class="form-control-feedback"></div>
                                 </div>
-                                <div class="form-group">
-                                    <label style="font-size: 18px" for="jobDescription">Job Description:</label>
-                                    <input type="text" class="form-control" id="jobDescription" placeholder="Job Description">
-                                </div>
-                                <div id="divEmployerID" class="form-group">
-                                    <label style="font-size: 18px" for="employerID">Employer ID:</label>
-                                    <input type="number" class="form-control" id="employerID" placeholder="Employer ID">
-                                </div>
+
+                                <!--<div id="divEmployerID" class="form-group">-->
+                                    <!--<label style="font-size: 18px" for="employerID">Employer ID:</label>-->
+                                    <!--<input type="number" class="form-control" id="employerID" placeholder="Employer ID">-->
+                                <!--</div>-->
                                 <div class="form-group">
                                     <label style="font-size: 18px" for="selectConstituency">Constituency:</label>
                                     <select class="form-control" id="selectConstituency">
@@ -65,6 +62,11 @@
                                         {% endfor %}
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label style="font-size: 18px" for="jobDescription">Job Description:</label>
+                                    <textarea class="form-control" id="jobDescription" placeholder="Job Description"></textarea>
+                                </div>
                                 <div class="form-group">
 
                                     <label style="font-size: 18px" for="phoneNumber">Phone Number:</label>
@@ -77,10 +79,63 @@
                             </form>
                         </div>
                         <div class="card-footer">
-                                <a href="#" id="submit_btn" onclick="" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Post Job</a>
+                                <a href="#" id="submit_btn" onclick="post_job_details()" class="btn btn-primary btn-lg btn-block" style="background-color: #2f5597;">Post Job</a>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
+                               class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                     src="{% static 'images/workers/useraccount.svg' %}">
+                                My Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/edit_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
+                               class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px" alt="Edit Profile"
+                                     src="{% static 'images/workers/mode_edit.svg' %}">
+                                Edit Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/message.svg' %}">
+                                View Notifications
+                                <span  style="margin-left: 120px" class="badge badge-default badge-pill">2</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'recommend' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Make Recommendation
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'post_job' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                Post Jobs
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'view_job' %}" style="background: none" class="border-0 back-link-hover">
+                                <img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/workers/contact.svg' %}">
+                                View Jobs
+                            </a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
             </div>
         </div>
 

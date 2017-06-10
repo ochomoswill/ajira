@@ -17,346 +17,253 @@ My Profile
     </div>
 </div>
 
-<div class="container">
+<div class="container" style="margin-bottom: 60px">
 
     <div class="col-md-12">
 
 
         <div class="row">
-            <div class="offset-md-1 col-md-10">
+            <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10">
+                <div class="row">
 
-                <div class="card" style="margin-bottom: 60px">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img class="img-thumbnail" width="300px" src="{{ employees.worker_avatar.url }}">
-                            </div>
-                            <div class="col-md-5">
-                                <h4 style="margin-top: 30px" class="card-title">I'm <span style="font-weight: bold">{{ employees.worker_name }}</span>
-                                </h4>
-                                <hr>
-                                <p class="card-text"><span class="profile_text_titles">Skills:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;</span>
-                                    {{employees.skills }}</p>
-                                <p class="card-text"><span
-                                        class="profile_text_titles">Location:&emsp;&emsp;&emsp;</span> Nairobi, Kenya.
-                                </p>
-                                <p class="card-text"><span
-                                        class="profile_text_titles">Services:&emsp;&emsp;&emsp;&nbsp;</span> Plumbing
-                                    and Chief Chef</p>
-                                <a href="#" class="btn btn-primary" style="margin-top: 20px; background: #4a58a5">Contact
-                                    Ajiriwa</a>
-                            </div>
-                            <div class="col-md-3 push-right">
+                    <div class="col-xl-12">
+                        <div class="card" style="margin-bottom: 60px">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-right: 40px">
+                                        <img class="img-thumbnail" width="500px"
+                                             src="{{ employees.worker_avatar.url }}">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4 style="margin-top: 30px; width:100%;" class="card-title">I'm <span
+                                                style="font-weight: bold">{{ employees.worker_name }}</span>
 
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        Action
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Contact {{ employees.worker_name }}</a>
-                                        <form method="post">
-                                            {% csrf_token %}
-                                            <a class="dropdown-item" onclick="getRecommendeeDetails()" href="#">Recommend {{ employees.worker_name }}</a>
-                                        </form>
-                                        <a class="dropdown-item" href="#">Share {{ employees.worker_name }}'s Profile</a>
-                                        <!--<a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                      </div>-->
+                                            <div class="btn-group float-right" style="margin-top: -20px;background: inherit">
+
+                                                <style>
+                                                    a.dropdown-toggle::after
+                                                    {
+                                                        display:none;
+                                                    }
+                                                </style>
+                                            <a class="dropdown-toggle" style="background: inherit"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                <img width="40px" style="margin-right: 10px"
+                                                                                 src="{% static 'images/my_profile/066-employee-4.svg   ' %}"
+                                                                                 alt="Location">
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Contact {{employees.worker_name}}</a>
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <a class="dropdown-item" onclick="getRecommendeeDetails()"  >Recommend
+                                                        {{ employees.worker_name }}</a>
+                                                </form>
+                                                <a class="dropdown-item" href="#">Share {{ employees.worker_name }}'s
+                                                    Profile</a>
+                                                <!--<a class="dropdown-item" href="#">Something else here</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Separated link</a>
+                                              </div>-->
+                                            </div>
+                                        </div>
+
+
+                                        </h4>
+                                        <hr>
+                                        <p class="card-text"><span class="profile_text_titles"><img width="32px"
+                                                                                                    style="margin-right: 10px"
+                                                                                                    src="{% static 'images/my_profile/072-skills-1.svg' %}"
+                                                                                                    alt="Skills"></span>
+                                            {{employees.skills }}</p>
+                                        <p class="card-text"><span
+                                                class="profile_text_titles"><img width="32px" style="margin-right: 10px"
+                                                                                 src="{% static 'images/my_profile/placeholder.svg' %}"
+                                                                                 alt="Location"></span>
+                                            {{employees.constituency_id }}, {{employees.county_id }}
+                                        </p>
+                                        <p class="card-text"><span class="profile_text_titles"><img width="32px"
+                                                                                                    style="margin-right: 10px"
+                                                                                                    src="{% static 'images/my_profile/money.svg' %}"
+                                                                                                    alt="Expected salary"></span>
+                                            Ksh. {{employees.expected_salary }}</p>
+                                        <p class="card-text"><span class="profile_text_titles"><img width="32px"
+                                                                                                    style="margin-right: 10px"
+                                                                                                    src="{% static 'images/my_profile/map-location.svg' %}"
+                                                                                                    alt="Preferred location"></span>
+                                            {{employees.preferred_locations }}</p>
+
+                                    </div>
+                                    <!--<div class="col-md-3">
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-danger dropdown-toggle"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Contact {{employees.worker_name}}</a>
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <a class="dropdown-item" onclick="getRecommendeeDetails()" href="#">Recommend
+                                                        {{ employees.worker_name }}</a>
+                                                </form>
+                                                <a class="dropdown-item" href="#">Share {{ employees.worker_name }}'s
+                                                    Profile</a>
+                                                &lt;!&ndash;<a class="dropdown-item" href="#">Something else here</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Separated link</a>
+                                              </div>&ndash;&gt;
+                                            </div>
+                                        </div>-->
+
+                                        <script>
+                                            //For getting CSRF token
+                                            function getCookie(name) {
+                                                var cookieValue = null;
+                                                if (document.cookie && document.cookie != '') {
+                                                    var cookies = document.cookie.split(';');
+                                                    for (var i = 0; i < cookies.length; i++) {
+                                                        var cookie = jQuery.trim(cookies[i]);
+                                                        // Does this cookie string begin with the name we want?
+                                                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                return cookieValue;
+                                            }
+
+                                            function post(data, url) {
+
+
+                                                var request = new XMLHttpRequest();
+
+                                                request.open("POST", url, true);
+
+                                                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                                // Only send the token to relative URLs i.e. locally.
+                                                request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                                                request.onreadystatechange = function () {
+                                                    console.log("request.readyState = " + request.readyState + "request.status = " + request.status);
+                                                    if (request.readyState == 4 && request.status == 200) {
+
+                                                        /*var obj = JSON.parse(request.responseText);
+
+                                                         document.getElementById("message").innerHTML = "";
+                                                         document.getElementById("update_message").innerHTML = alert(obj.data);*/
+
+
+                                                        console.log("posted the data");
+
+                                                        window.location = "/recommend/";
+                                                    }
+
+                                                };
+
+                                                request.send(data);
+                                            }
+
+
+                                            function getRecommendeeDetails() {
+                                                var url = "/recommendee_details/";
+
+                                                var recommendeeEmail = "{{ employees.email_address }}";
+                                                console.log(recommendeeEmail);
+
+                                                var data = "&recommendeeEmail=" + recommendeeEmail;
+
+                                                post(data, url);
+                                            }
+
+                                        </script>
                                     </div>
                                 </div>
 
-                                <script>
-                                    //For getting CSRF token
-                                    function getCookie(name) {
-                                        var cookieValue = null;
-                                        if (document.cookie && document.cookie != '') {
-                                            var cookies = document.cookie.split(';');
-                                            for (var i = 0; i < cookies.length; i++) {
-                                                var cookie = jQuery.trim(cookies[i]);
-                                                // Does this cookie string begin with the name we want?
-                                                if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        return cookieValue;
-                                    }
 
-                                    function post(data, url) {
-
-
-                                        var request = new XMLHttpRequest();
-
-                                        request.open("POST", url, true);
-
-                                        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                                        // Only send the token to relative URLs i.e. locally.
-                                        request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-                                        request.onreadystatechange = function () {
-                                            console.log("request.readyState = " + request.readyState + "request.status = " + request.status);
-                                            if (request.readyState == 4 && request.status == 200) {
-
-                                                /*var obj = JSON.parse(request.responseText);
-
-                                                document.getElementById("message").innerHTML = "";
-                                                document.getElementById("update_message").innerHTML = alert(obj.data);*/
-
-
-                                                console.log("posted the data");
-
-                                                window.location= "/recommend/";
-                                            }
-
-                                        };
-
-                                        request.send(data);
-                                    }
-
-
-                                    function getRecommendeeDetails()
-                                    {
-                                        var url = "/recommendee_details/";
-
-                                        var recommendeeEmail = "{{ employees.email_address }}";
-                                        console.log(recommendeeEmail);
-
-                                        var data = "&recommendeeEmail="+recommendeeEmail;
-
-                                        post(data,url);
-                                    }
-
-                                </script>
-
-
-                            </div>
 
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div>
-                                    <h4 class="card-title">About</h4>
-                                    <p class="card-text">{{ employees.worker_bio }}</p>
-
-
-                                    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-                                </div>
-                            </li>
-                            {% if experiences %}
-                            <li class="list-group-item">
-                                <div class="card-header">
-                                    <h4 class="card-title">Work Experience</h4>
-                                </div>
-
-
-                                <div class="card-block" style="padding: 20px">
-                                    <ul class="timeline">
-
-                                        {% for experience in experiences %}
-                                        <li>
-                                            <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">{{experience.job_title}}</h4>
-                                                    <p>
-                                                        <small class="text-muted"><i
-                                                                class="glyphicon glyphicon-time"></i>
-                                                            {{experience.from_date}} - {{experience.to_date}}
-                                                        </small>
-                                                    </p>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <p> {{experience.job_description}}</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        {% endfor %}
-
-
-                                    </ul>
-                                </div>
-                            </li>
-                            {% endif %}
-
-                            {% if recommendations %}
-                            <li class="list-group-item">
-                                <div>
-                                    <h4 class="card-title">Recommendations</h4>
-
-                                    <div class="card card-outline-primary mb-3">
-                                        <div class="card-block">
-                                            <blockquote class="card-blockquote">
-                                                <h4 style="margin-top: 30px" class="card-title"><span
-                                                        style="font-weight: bold">{{ employees.worker_name }}</span>
-                                                </h4>
-                                                <hr>
-                                                <p class="card-text"><span class="profile_text_titles">Relationship:&emsp;&emsp;&emsp;&emsp; </span>
-                                                    {{employees.skills }}</p>
-                                                <p class="card-text"><span class="profile_text_titles">Skills or Position:&emsp;&emsp;&nbsp;</span>
-                                                    Nairobi, Kenya.</p>
-                                                <p class="card-text"><span class="profile_text_titles">Remark:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;</span>
-                                                    Plumbing and Chief Chef</p>
-                                            </blockquote>
-                                        </div>
-                                    </div>
-
-
-                                    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-                                </div>
-                            </li>
-                            {% endif %}
-                        </ul>
                     </div>
 
-                    <!--<div class="card" style="margin-bottom: 60px">-->
-                    <!--<div class="card-block">-->
-                    <!--<h4 class="card-title">About</h4>-->
-                    <!--<p class="card-text">{{ employees.worker_bio }}</p>-->
+
+                </div>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div>
+                                <h4 class="card-title">About</h4>
+                                <p class="card-text">{{ employees.worker_bio }}</p>
 
 
-                    <!--&lt;!&ndash;<a href="#" class="btn btn-primary">Go somewhere</a>&ndash;&gt;-->
-                    <!--</div>-->
-                    <!--</div>-->
+                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+                            </div>
+                        </li>
+                        {% if experiences %}
+                        <li class="list-group-item">
+                            <h4 class="card-title">Work Experience</h4>
 
 
-                    <!--<div class="card" style="margin-bottom: 60px">
-                        <div class="card-header">
-                            <h1 id="timeline"
-                                style="text-align: center; font-weight: 300; margin-bottom: 40px; margin-top: 40px">Work
-                                Experience</h1>
-                        </div>
-                        <div class="card-block" style="padding: 20px">
-                            <ul class="timeline">
+                            <div class="card-block" style="padding: 20px">
+                                <ul class="timeline">
 
-                                {% for experience in experiences %}
-                                <li>
-                                    <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">{{experience.job_title}}</h4>
-                                            <p>
-                                                <small class="text-muted"><i class="glyphicon glyphicon-time"></i>
-                                                    {{experience.from_date}} - {{experience.to_date}}
-                                                </small>
-                                            </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p> {{experience.job_description}}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                {% endfor %}
-
-                                &lt;!&ndash;<li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                                            <p>Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi. Aenean vel dui dui. Nullam leo erat, aliquet quis tempus a, posuere ut mi. Ut scelerisque neque et turpis posuere pulvinar pellentesque nibh ullamcorper. Pharetra in mattis molestie, volutpat elementum justo. Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac mauris lectus, non scelerisque augue. Aenean justo massa.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge danger"><i class="glyphicon glyphicon-credit-card"></i></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge info"><i class="glyphicon glyphicon-floppy-disk"></i></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                                            <hr>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Another action</a></li>
-                                                    <li><a href="#">Something else here</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a></li>
-                                                </ul>
+                                    {% for experience in experiences %}
+                                    <li class="{% cycle '' 'timeline-inverted' %}">
+                                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">{{experience.job_title}}</h4>
+                                                <p>
+                                                    <small class="text-muted"><i class="glyphicon glyphicon-time"></i>
+                                                        {{experience.from_date}} - {{experience.to_date}}
+                                                    </small>
+                                                </p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p> {{experience.job_description}}</p>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Mussum ipsum cacilds</h4>
+                                    </li>
+                                    {% endfor %}
+
+
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if recommendations %}
+                        <li class="list-group-item">
+                            <div class="col-xl-12">
+                                <h4 class="card-title">Recommendations</h4>
+
+                                <ul class="list-unstyled">
+                                    {% for recommendation in recommendations %}
+                                    <hr>
+
+
+                                    <li class="media">
+                                        <img class="d-flex mr-3" width="100px" src="{{ employees.worker_avatar.url }}"
+                                             alt="Generic placeholder image">
+                                        <div class="media-body" style="margin-left:15px">
+                                            <h4 class="mt-0 mb-1">{{ recommendation.employer_id }}</h4>
+                                            <h6 class="mt-0 mb-1">Relationship:&emsp;&emsp;&emsp; {{
+                                                recommendation.relationship }}</h6>
+                                            <h6 class="mt-0 mb-1">Skills or Position:&emsp;&emsp;&nbsp;{{recommendation.position_or_skills_at_that_time
+                                                }}</h6>
+                                            "{{recommendation.remark }}"
                                         </div>
-                                        <div class="timeline-body">
-                                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                                        </div>
-                                    </div>
-                                </li>&ndash;&gt;
-                            </ul>
-                        </div>
-                    </div>-->
+                                    </li>
 
-                    <!--<div class="card" style="margin-bottom: 60px">-->
-                    <!--<div class="card-block">-->
-                    <!--<h4 class="card-title">Recommendations</h4>-->
+                                    {% endfor %}
 
-                    <!--<div class="card card-outline-primary mb-3">-->
-                    <!--<div class="card-block">-->
-                    <!--<blockquote class="card-blockquote">-->
-                    <!--<h4 style="margin-top: 30px" class="card-title"><span style="font-weight: bold">{{ employees.worker_name }}</span>-->
-                    <!--</h4>-->
-                    <!--<hr>-->
-                    <!--<p class="card-text"><span class="profile_text_titles">Relationship:&emsp;&emsp;&emsp;&emsp; </span>-->
-                    <!--{{employees.skills }}</p>-->
-                    <!--<p class="card-text"><span class="profile_text_titles">Skills or Position:&emsp;&emsp;&nbsp;</span>-->
-                    <!--Nairobi, Kenya.</p>-->
-                    <!--<p class="card-text"><span class="profile_text_titles">Remark:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;</span>-->
-                    <!--Plumbing and Chief Chef</p>-->
-                    <!--</blockquote>-->
-                    <!--</div>-->
-                    <!--</div>-->
-
-
-                    <!--&lt;!&ndash;<a href="#" class="btn btn-primary">Go somewhere</a>&ndash;&gt;-->
-                    <!--</div>-->
-                    <!--</div>-->
-
-
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
         </div>

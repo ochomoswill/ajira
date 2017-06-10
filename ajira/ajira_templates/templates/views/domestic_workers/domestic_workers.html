@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-
+{% load static %}
 {% block title %}
 Ajiriwa
 {% endblock %}
@@ -188,26 +188,58 @@ Ajiriwa
                     <div class="card-header">
                         <h3>Search</h3>
                     </div>
+
+
                     <div class="card-block">
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group">
-                                        <label style="font-size: 18px" for="selectSkill">Skill:</label>
-                                        <select class="form-control" id="selectSkill">
-                                            <option value="INIT">Select Skill</option>
-                                            <option>Sewing</option>
-                                            <option>Lumberjack</option>
-                                            <option>House Cleaning</option>
-                                            <option>Nanny</option>
-                                            <option>Fumigation</option>
-                                            <option>Gardening</option>
-                                            <option>Cooking</option>
-                                            <option>Chauffeur</option>
-                                        </select>
-                                    </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-selectSkill">
+                                        <img width="40px" src="{% static 'images/my_profile/072-skills-1.svg' %}"
+                                                                                            alt="Skills">
+                                    </span>
+                                    <select class="form-control" id="selectSkill" aria-describedby="basic-selectSkill">
+                                        <option value="INIT">Select Skill</option>
+                                        <option>Sewing</option>
+                                        <option>Lumberjack</option>
+                                        <option>House Cleaning</option>
+                                        <option>Nanny</option>
+                                        <option>Fumigation</option>
+                                        <option>Gardening</option>
+                                        <option>Cooking</option>
+                                        <option>Chauffeur</option>
+                                    </select>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label style="font-size: 18px" for="selectSkill">Skill:</label>
+                                    <select class="form-control" id="selectSkill">
+                                        <option value="INIT">Select Skill</option>
+                                        <option>Sewing</option>
+                                        <option>Lumberjack</option>
+                                        <option>House Cleaning</option>
+                                        <option>Nanny</option>
+                                        <option>Fumigation</option>
+                                        <option>Gardening</option>
+                                        <option>Cooking</option>
+                                        <option>Chauffeur</option>
+                                    </select>
+                                </div>-->
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-selectCounty">
+                                        <img width="40px" src="{% static 'images/search/011-map.svg' %}"
+                                                                                            alt="County">
+                                    </span>
+                                    <select class="form-control" id="selectCounty"
+                                            aria-describedby="basic-selectCounty">
+                                        <option value="INIT">Select County</option>
+                                        {% for county in counties %}
+                                        <option value="{{county.id}}">{{county.county_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!--<div class="form-group">
                                     <label style="font-size: 18px" for="selectCounty">County:</label>
                                     <select class="form-control" id="selectCounty">
                                         <option value="INIT">Select County</option>
@@ -215,10 +247,26 @@ Ajiriwa
                                         <option value="{{county.id}}">{{county.county_name}}</option>
                                         {% endfor %}
                                     </select>
-                                </div>
+                                </div>-->
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-selectConstituency">
+                                        <img width="40px" src="{% static 'images/search/011-map.svg' %}"
+                                                                                            alt="Constituency">
+                                    </span>
+                                    <select class="form-control" id="selectConstituency"
+                                            aria-describedby="basic-selectConstituency">
+                                        <option value="INIT">Select Constituency</option>
+
+                                        {% for constituency in constituencies %}
+                                        <option value="{{constituency.id}}">
+                                            {{constituency.constituency_name}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!--<div class="form-group">
                                     <label style="font-size: 18px"
                                            for="selectConstituency">Constituency:</label>
                                     <select class="form-control" id="selectConstituency">
@@ -230,18 +278,97 @@ Ajiriwa
                                         </option>
                                         {% endfor %}
                                     </select>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
-                        <div class="row">
-                                    <div class="col-md-3 pull-right">
-                                        <a href="#"  class="btn btn-outline-info btn-lg btn-block"
-                                           style="border: 1px solid #2196f3;">Search</a>
-                                    </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-3 pull-right">
+                                <a href="#" onclick="getSearchDetails()" class="btn btn-outline-info btn-lg btn-block"
+                                   style="border: 1px solid #2196f3;">Search</a>
+                            </div>
 
-                                </div>
+                        </div>
                     </div>
                 </div>
+
+                <script>
+                    //For getting CSRF token
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie != '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = jQuery.trim(cookies[i]);
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    function post(data, url) {
+
+
+                        var request = new XMLHttpRequest();
+
+                        request.open("POST", url, true);
+
+                        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        // Only send the token to relative URLs i.e. locally.
+                        request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                        request.onreadystatechange = function () {
+                            console.log("request.readyState = " + request.readyState + "request.status = " + request.status);
+                            if (request.readyState == 4 && request.status == 200) {
+
+                                /*var obj = JSON.parse(request.responseText);
+
+                                 document.getElementById("message").innerHTML = "";
+                                 document.getElementById("update_message").innerHTML = alert(obj.data);*/
+
+
+                                console.log("posted the data");
+
+                                window.location = "/ajiriwa_search/";
+                            }
+
+                        };
+
+                        request.send(data);
+                    }
+
+
+                    function getSearchDetails() {
+                        var url = "/ajiriwa_search_details/";
+
+                        /*getting the landlord name from dropdown list*/
+                        var selectConstituencyObj = document.getElementById("selectConstituency");
+                        var constituency = selectConstituencyObj.options[selectConstituencyObj.selectedIndex].value;
+
+
+                        /*getting the landlord name from dropdown list*/
+                        var selectCountyObj = document.getElementById("selectCounty");
+                        var county = selectCountyObj.options[selectCountyObj.selectedIndex].value;
+
+
+                        /*getting the country from dropdown list*/
+                        var selectSkillObj = document.getElementById("selectSkill");
+                        var skills = selectSkillObj.options[selectSkillObj.selectedIndex].text;
+
+                        console.log(skills);
+                        console.log(constituency);
+                        console.log(county);
+
+                        var data = "&skills=" + skills +
+                            "&constituency=" + constituency +
+                            "&county=" + county;
+
+                        post(data, url);
+                    }
+
+                </script>
 
 
                 <div class="row">
@@ -252,13 +379,25 @@ Ajiriwa
                                  alt="Card image cap">
                             <div class="card-block">
                                 <h4 class="card-title">{{employee.worker_name}}</h4>
-                                <p class="card-text"><span class="profile_text_titles">Skills:</span>
-                                    {{employee.skills}}</p>
-                                <p class="card-text"><span class="profile_text_titles">Location:</span> Nairobi, Kenya.
+                                <!--<p class="card-text"><span class="profile_text_titles">Skills:</span>
+                                    {{employee.skills}}</p>-->
+                                <p class="card-text"><span class="profile_text_titles"><img width="32px"
+                                                                                            style="margin-right: 10px"
+                                                                                            src="{% static 'images/my_profile/072-skills-1.svg' %}"
+                                                                                            alt="Skills"></span>
+                                    {{employee.skills }}</p>
+                                <p class="card-text"><span
+                                        class="profile_text_titles"><img width="32px" style="margin-right: 10px"
+                                                                         src="{% static 'images/my_profile/map-location.svg' %}"
+                                                                         alt="Location"></span>
+                                    {{employee.constituency_id }}, {{employee.county_id }}
                                 </p>
-                                <p class="card-text"><span class="profile_text_titles">Services:</span> Plumbing and
-                                    Chief Chef</p>
+                                <!--<p class="card-text"><span class="profile_text_titles">Location:</span> Nairobi, Kenya.
+                                </p>-->
+                                <!--<p class="card-text"><span class="profile_text_titles">Services:</span> Plumbing and
+                                    Chief Chef</p>-->
                             </div>
+                            <hr style="border: 1px solid #0A246A">
                             <div class="card-footer">
                                 <a style="background-color: #2f5597;" class="btn btn-primary btn-lg"
                                    href="{{employee.get_absolute_url}}" role="button">See Full Profile</a>

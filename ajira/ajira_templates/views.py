@@ -219,9 +219,47 @@ def edit_mwajiri_profile(request, slug):
 # ===========================================================================================================================
 # Worker Page
 # ===========================================================================================================================
+def ajiriwa_search_details(request):
+    if request.method == 'POST':
+        request.session['searchSkill'] = request.POST.get('skills')
+        request.session['searchCounty'] = request.POST.get('county')
+        request.session['searchConstituency'] = request.POST.get('constituency')
+        return JsonResponse({"data": "Ajiriwa search data successfully posted!"})
 
 def ajiriwa(request):
     employees = Worker.objects.all()
+    # if request.session['searchSkill'] and request.session['searchCounty'] and request.session['searchConstituency']:
+    #     employees = Worker.objects.filter(skills=request.session['searchSkill'], county_id=request.session['searchCounty'], constituency_id=request.session['searchConstituency'])
+    # elif request.session['searchSkill']:
+    #     pass
+    # elif request.session['searchCounty']:
+    #     pass
+    # elif request.session['searchConstituency']:
+    #     pass
+    paginator = Paginator(employees, 9)
+    constituencies = Constituencies.objects.all()
+    counties = Counties.objects.all()
+    page = request.GET.get('page')
+    try:
+        employees = paginator.page(page)
+    except PageNotAnInteger:
+        employees = paginator.page(1)
+    except EmptyPage:
+        employees = paginator.page(paginator.num_pages)
+    context = {"employees": employees ,'constituencies': constituencies, 'counties': counties, 'page': page}
+    template = 'views/domestic_workers/domestic_workers.html'
+    return render(request, template, context)
+
+def ajiriwa_search(request):
+    employees = Worker.objects.all()
+    if request.session['searchSkill'] and request.session['searchCounty'] and request.session['searchConstituency']:
+        employees = Worker.objects.filter(skills=request.session['searchSkill'], county_id=request.session['searchCounty'], constituency_id=request.session['searchConstituency'])
+    # elif request.session['searchSkill']:
+    #     pass
+    # elif request.session['searchCounty']:
+    #     pass
+    # elif request.session['searchConstituency']:
+    #     pass
     paginator = Paginator(employees, 9)
     constituencies = Constituencies.objects.all()
     counties = Counties.objects.all()
@@ -310,6 +348,8 @@ def ajiriwa_profile(request, slug):
         return render(request, template, context)
 
 
+
+
 def my_profile(request, slug):
     if not request.user.is_authenticated():
         return redirect('/require_loggedin')
@@ -320,11 +360,15 @@ def my_profile(request, slug):
         print (request.user)
         experiences = Experience.objects.filter(worker_id=current_user_id)
         recommendations = Recommendation.objects.filter(worker_id=current_user_id)
-        employer_id = Recommendation.objects.filter(worker_id=current_user_id).values_list('employer_id', flat=True)[0]
-        recommender = Employer.objects.filter(id =employer_id ).values_list('employer_name', flat=True)[0]
-        recommender_avatar = Employer.objects.filter(id=employer_id).values_list('employer_avatar', flat=True)[0]
-        print(recommender_avatar)
-        context = {'employees': employees, "experiences": experiences, "recommendations":recommendations, "recommender":recommender, "recommender_avatar":recommender_avatar}
+        context = {'employees': employees, "experiences": experiences, "recommendations": recommendations}
+        # if Recommendation.objects.filter(worker_id=current_user_id).values_list('employer_id', flat=True)[0]:
+        #     employer_id = Recommendation.objects.filter(worker_id=current_user_id).values_list('employer_id', flat=True)[0]
+        #     recommender = Employer.objects.filter(id =employer_id ).values_list('employer_name', flat=True)[0]
+        #     recommender_avatar = Employer.objects.filter(id=employer_id).values_list('employer_avatar', flat=True)[0]
+        #     print(recommender_avatar)
+        #     context = {'employees': employees, "experiences": experiences, "recommendations": recommendations,
+        #                "recommender": recommender, "recommender_avatar": recommender_avatar}
+
         template = 'views/my_account/my_profile.html'
         return render(request, template, context)
 

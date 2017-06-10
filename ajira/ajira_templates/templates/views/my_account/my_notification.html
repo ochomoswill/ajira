@@ -22,7 +22,7 @@ My Profile
 
         <div class="row" style="margin-bottom: 60px">
 
-            <div class="offset-md-1 col-md-8">
+            <div class="col-md-9">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
@@ -91,7 +91,7 @@ My Profile
                             <a href="/my_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
-                                     src="{% static 'images/workers/useraccount.svg' %}">
+                                     src="{% static 'images/my_profile/022-id-card-2.svg' %}">
                                 My Profile
                             </a>
                         </li>
@@ -99,22 +99,23 @@ My Profile
                             <a href="/edit_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
-                                     src="{% static 'images/workers/mode_edit.svg' %}">
+                                     src="{% static 'images/my_profile/066-employee-4.svg' %}">
                                 Edit Profile
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="background: none" class="border-0 back-link-hover">
+                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="width:100%;background: none"
+                               class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/message.svg' %}">
+                                     src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span  style="margin-left: 120px" class="badge badge-default badge-pill">2</span>
+                                <span class="badge badge-default badge-pill float-right">2</span>
                             </a>
                         </li>
                         <li class="list-group-item">
                             <a href="{% url 'view_job' %}" style="background: none" class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/contact.svg' %}">
+                                     src="{% static 'images/my_profile/089-jobs.svg' %}">
                                 View Jobs
                             </a>
                         </li>
@@ -125,7 +126,7 @@ My Profile
                             <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
-                                     src="{% static 'images/workers/useraccount.svg' %}">
+                                     src="{% static 'images/my_profile/022-id-card-2.svg' %}">
                                 My Profile
                             </a>
                         </li>
@@ -133,36 +134,36 @@ My Profile
                             <a href="/edit_mwajiri_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
-                                     src="{% static 'images/workers/mode_edit.svg' %}">
+                                     src="{% static 'images/my_profile/066-employee-4.svg' %}">
                                 Edit Profile
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="background: none" class="border-0 back-link-hover">
+                            <a href="/my_notifications/{{ request.session.member_slug }}/" class="border-0 back-link-hover" style="background: none;width:100%;background: none">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/message.svg' %}">
+                                     src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span  style="margin-left: 120px" class="badge badge-default badge-pill">2</span>
+                                <span class="badge badge-default badge-pill float-right">2</span>
                             </a>
                         </li>
                         <li class="list-group-item">
                             <a href="{% url 'recommend' %}" style="background: none" class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/contact.svg' %}">
+                                     src="{% static 'images/my_profile/080-people.svg' %}">
                                 Make Recommendation
                             </a>
                         </li>
                         <li class="list-group-item">
                             <a href="{% url 'post_job' %}" style="background: none" class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/contact.svg' %}">
+                                     src="{% static 'images/my_profile/029-laptop.svg' %}">
                                 Post Jobs
                             </a>
                         </li>
                         <li class="list-group-item">
                             <a href="{% url 'view_job' %}" style="background: none" class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/contact.svg' %}">
+                                     src="{% static 'images/my_profile/089-jobs.svg' %}">
                                 View Jobs
                             </a>
                         </li>

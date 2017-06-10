@@ -16,16 +16,16 @@ My Profile
     </div>
 </div>
 
-<div class="container">
+<div class="container" style="margin-bottom: 60px">
 
-    <div class="col-md-12">
+    <div class="col-xl-12 col-lg-12">
 
 
         <div class="row">
-            <div class="offset-md-1 col-md-8">
+            <div class="col-xl-9 col-lg-9">
                 <div class="row">
 
-                    <div class="col-md-12">
+                    <div class="col-xl-12">
                         <div class="card" style="margin-bottom: 60px">
                             <div class="card-block">
                                 <div class="row">
@@ -38,21 +38,28 @@ My Profile
                                                 style="font-weight: bold">{{ employees.worker_name }}</span>
                                         </h4>
                                         <hr>
-                                        <p class="card-text"><span class="profile_text_titles">Skills:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;</span>
+                                        <p class="card-text"><span class="profile_text_titles"><img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/my_profile/072-skills-1.svg' %}" alt="Skills"></span>
                                             {{employees.skills }}</p>
                                         <p class="card-text"><span
-                                                class="profile_text_titles">County:&emsp;&emsp;&emsp;</span> {{employees.county_id }}
+                                                class="profile_text_titles"><img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/my_profile/placeholder.svg' %}" alt="Location"></span>
+                                            {{employees.constituency_id }}, {{employees.county_id }}
                                         </p>
-                                        <p class="card-text"><span
-                                                class="profile_text_titles">Constituency:&emsp;&emsp;&emsp;</span> {{employees.constituency_id }}
-                                        </p>
+                                        <p class="card-text"><span class="profile_text_titles"><img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/my_profile/money.svg' %}" alt="Expected salary"></span>
+                                            Ksh. {{employees.expected_salary }}</p>
+                                        <p class="card-text"><span class="profile_text_titles"><img width="32px" style="margin-right: 10px"
+                                     src="{% static 'images/my_profile/map-location.svg' %}" alt="Preferred location"></span>
+                                            {{employees.preferred_locations }}</p>
+
                                         <!--<p class="card-text"><span
-                                                class="profile_text_titles">Services:&emsp;&emsp;&emsp;&nbsp;</span>
-                                            Plumbing
-                                            and Chief Chef</p>-->
+                                                class="profile_text_titles">Constituency:&emsp;&emsp;&emsp;</span>
+                                            {{employees.constituency_id }}
+                                        </p>
                                         <a href="#" class="btn btn-primary"
                                            style="margin-top: 20px; background: #4a58a5">Contact
-                                            Ajiriwa</a>
+                                            Ajiriwa</a>-->
                                     </div>
                                 </div>
 
@@ -83,7 +90,7 @@ My Profile
                                 <ul class="timeline">
 
                                     {% for experience in experiences %}
-                                    <li>
+                                    <li class="{% cycle '' 'timeline-inverted' %}">
                                         <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
@@ -109,18 +116,36 @@ My Profile
 
                         {% if recommendations %}
                         <li class="list-group-item">
-                            <div>
+                            <div class="col-xl-12">
                                 <h4 class="card-title">Recommendations</h4>
-                                {% for recommendation in recommendations %}
 
-                                <div class="card" style="margin-bottom: 60px">
+                                <ul class="list-unstyled">
+                                {% for recommendation in recommendations %}
+                                    <hr>
+
+
+                                    <li class="media">
+                                        <img class="d-flex mr-3" width="100px" src="{{ employees.worker_avatar.url }}" alt="Generic placeholder image">
+                                        <div class="media-body" style="margin-left:15px">
+                                            <h4 class="mt-0 mb-1">{{ recommendation.employer_id }}</h4>
+                                            <h6 class="mt-0 mb-1">Relationship:&emsp;&emsp;&emsp; {{ recommendation.relationship }}</h6>
+                                            <h6 class="mt-0 mb-1">Skills or Position:&emsp;&emsp;&nbsp;{{recommendation.position_or_skills_at_that_time }}</h6>
+                                            "{{recommendation.remark }}"
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+
+                                </ul>
+
+                                <!--<div class="card" style="margin-bottom: 60px">
                                     <div class="card-block">
                                         <div class="row">
-                                            <div class="col-md-4" style="margin-right: 40px">
+                                            <div class="col-xl-4" style="margin-right: 40px">
                                                 <img class="img-thumbnail" width="300px"
                                                      src="/ajira_media/{{ recommender_avatar}}">
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-xl-7">
                                                 <h4 style="margin-top: 30px" class="card-title"><span
                                                         style="font-weight: bold">{{ recommendation.employer_id }}</span>
                                                 </h4>
@@ -130,7 +155,8 @@ My Profile
                                                 <p class="card-text"><span class="profile_text_titles">Skills or Position:&emsp;&emsp;&nbsp;</span>
                                                     {{recommendation.position_or_skills_at_that_time }}</p>
                                                 <blockquote>
-                                                    <p style="font-size: 15px; font-style: italic" class="card-text"><span class="profile_text_titles"></span>
+                                                    <p style="font-size: 15px; font-style: italic" class="card-text">
+                                                        <span class="profile_text_titles"></span>
                                                         "{{recommendation.remark }}"</p>
                                                 </blockquote>
                                             </div>
@@ -138,10 +164,10 @@ My Profile
 
 
                                     </div>
-                                </div>
+                                </div>-->
 
 
-                                {% endfor %}
+
 
 
                                 <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
@@ -151,14 +177,14 @@ My Profile
                     </ul>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-xl-3 col-lg-3">
                 <div class="card">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <a href="/my_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
-                                     src="{% static 'images/workers/useraccount.svg' %}">
+                                     src="{% static 'images/my_profile/022-id-card-2.svg' %}">
                                 My Profile
                             </a>
                         </li>
@@ -166,23 +192,23 @@ My Profile
                             <a href="/edit_profile/{{ request.session.member_slug }}/" style="background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px" alt="Edit Profile"
-                                     src="{% static 'images/workers/mode_edit.svg' %}">
+                                     src="{% static 'images/my_profile/066-employee-4.svg' %}">
                                 Edit Profile
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="background: none"
+                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="width:100%;background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/message.svg' %}">
+                                     src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span style="margin-left: 120px" class="badge badge-default badge-pill">2</span>
+                                <span class="badge badge-default badge-pill float-right">2</span>
                             </a>
                         </li>
                         <li class="list-group-item">
                             <a href="{% url 'view_job' %}" style="background: none" class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
-                                     src="{% static 'images/workers/contact.svg' %}">
+                                     src="{% static 'images/my_profile/089-jobs.svg' %}">
                                 View Jobs
                             </a>
                         </li>
@@ -191,12 +217,11 @@ My Profile
 
                 </div>
             </div>
-            s
+
 
 
         </div>
     </div>
-</div>
 </div>
 
 {% endblock %}

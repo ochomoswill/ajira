@@ -15,6 +15,20 @@ html,body
     font-family: 'Roboto-Light';
 }
 
+@media screen and (min-width: 1360px) {
+    .container {
+        width: auto;
+
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        width: 1360px;
+
+    }
+}
+
 /*******************************/
 /* Navbar */
 /*******************************/
@@ -104,7 +118,7 @@ html,body
 
 @media screen and (min-width: 1024px) {
     .img-left {
-        margin-right: 64px;
+        /*margin-right: 64px;*/
     }
 }
 @media screen and (min-width: 600px) {
@@ -115,7 +129,7 @@ html,body
 
 @media screen and (min-width: 1024px) {
     .img-right {
-        margin-left: 64px;
+        /*margin-left: 64px;*/
         margin-right: 0;
         -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;

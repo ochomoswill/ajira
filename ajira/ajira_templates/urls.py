@@ -34,7 +34,9 @@ urlpatterns = [
     url(r'^edit_mwajiri_profile/(?P<slug>[-\w]+)/$', views.edit_mwajiri_profile, name='edit_mwajiri_profile'),
     # Worker page
     url(r'^ajiriwa/$', views.ajiriwa, name='ajiriwa'),
+    url(r'^ajiriwa_search_details/$', views.ajiriwa_search_details, name='ajiriwa_search_details'),
     url(r'^ajiriwa_reg/$', views.ajiriwa_reg, name='ajiriwa_reg'),
+    url(r'^ajiriwa_search/$', views.ajiriwa_search, name='ajiriwa_search'),
     url(r'^register_ajiriwa/$', views.register_ajiriwa, name='register_ajiriwa'),
     url(r'^edit_profile/(?P<slug>[-\w]+)/$', views.edit_profile, name='edit_profile'),
     url(r'^simple_upload/$', views.simple_upload, name='simple_upload'),

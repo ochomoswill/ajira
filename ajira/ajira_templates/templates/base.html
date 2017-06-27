@@ -17,8 +17,10 @@
 
 
     <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/tether.min.js' %}"></script>
     <script src="{% static 'js/material.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
     <script src="{% static 'js/project.js' %}"></script>
 </head>
 <body>
@@ -73,7 +75,7 @@
             {% if request.session.member_usertype == "mwajiri" %}
                 <form class="form-inline my-2 my-lg-0">
                   <!--<h1>{{ request.session.member_slug }}</h1>-->
-                  <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" class="btn btn-outline-success my-2 my-sm-0" >My Profile</a>
+                    <a href="/my_mwajiri_profile/{{ request.session.member_slug }}/" class="btn btn-outline-success my-2 my-sm-0" >My Profile</a>
                   <a href="{% url 'logout_view' %}" class="btn btn-outline-danger my-2 my-sm-0" >Log Out</a>
               </form>
 

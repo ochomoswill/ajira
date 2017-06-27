@@ -380,7 +380,7 @@ Edit Profile
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">

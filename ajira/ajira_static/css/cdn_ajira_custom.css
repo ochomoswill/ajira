@@ -249,3 +249,15 @@ footer
     font-weight: 500;
     font-size: 18px;
 }
+
+.badge-default badge-pill
+{
+    background: #ef0606;
+    color: white;
+    font-weight: bold;
+}
+
+.list-group-item.active {
+    background-color: #e5e5e5;
+    font-weight: bold;
+}

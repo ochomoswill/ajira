@@ -6,6 +6,8 @@
 My Profile
 {% endblock %}
 
+{% load custom_humanize %}
+
 
 {% block content %}
 
@@ -24,62 +26,16 @@ My Profile
 
             <div class="col-md-9">
                 <div class="list-group">
+                    {% for notification in notifications %}
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                       <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small>3 minutes ago</small>
+                        <h5 class="mb-1">{{ notification.sender }}</h5>
+                        <small>{{ notification.date_created|humanizeTimeDiff }}</small>
                       </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small>Donec id elit non mi porta.</small>
+                      <p class="mb-1">{{ notification.message }}</p>
+                      <!--<small>Donec id elit non mi porta.</small>-->
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small >13 minutes ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small>14 minutes ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small >3 hours ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small >Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small >6 hours ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small>9 hours ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small >1 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                      <small >Donec id elit non mi porta.</small>
-                    </a>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -109,7 +65,7 @@ My Profile
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -143,7 +99,7 @@ My Profile
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">

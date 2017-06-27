@@ -89,7 +89,11 @@ function post_job_details(){
 
 
     /* ENTERED FIELD DATA */
-    var jobTitle = document.getElementById("jobTitle").value;
+    //var jobTitle = document.getElementById("jobTitle").value;
+
+    var jobTitleObj = document.getElementById("jobTitle");
+    var jobTitle = jobTitleObj.options[jobTitleObj.selectedIndex].text;
+
     var jobDescription = document.getElementById("jobDescription").value;
 
     /*getting the constituency name from dropdown list*/
@@ -126,7 +130,10 @@ function post_job_details(){
 
 function reset_post_job_form()
 {
-    document.getElementById("jobTitle").value = "";
+    //document.getElementById("jobTitle").value = "";
+    var jobTitleObj = document.getElementById("jobTitle");
+    jobTitleObj.value = "INIT";
+
     document.getElementById("jobDescription").value = "";
 
     var selectConstituencyObj = document.getElementById("selectConstituency");

@@ -35,7 +35,20 @@
                                 {% csrf_token %}
                                 <div id="divJobTitle" class="form-group">
                                     <label style="font-size: 18px" for="jobTitle">Job Title:</label>
-                                    <input type="text" class="form-control" id="jobTitle" placeholder="Job Title">
+                                    <select class="form-control" id="jobTitle">
+                                        <option value="INIT">Select Job</option>
+                                        <option>House Help</option>
+                                        <option>Tailor</option>
+                                        <option>Lumberjack</option>
+                                        <option>House Cleaner</option>
+                                        <option>Electrician</option>
+                                        <option>Plumber</option>
+                                        <option>Nanny</option>
+                                        <option>Fumigator</option>
+                                        <option>Gardener</option>
+                                        <option>Cook</option>
+                                        <option>Chauffeur</option>
+                                    </select>
                                     <div id="jobTitle_validate_text" class="form-control-feedback"></div>
                                 </div>
 
@@ -107,7 +120,7 @@
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">

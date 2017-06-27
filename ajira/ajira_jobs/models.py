@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from ajira_mwajiri.models import Employer
+from ajira_ajiriwa.models import Worker
 from ajira_parameters.models import Countries, Counties, Constituencies
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
@@ -35,3 +36,16 @@ class Job(models.Model):
 
     def __str__(self):
         return self.job_title
+
+
+class JobApplicant(models.Model):
+    job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
+    employer_id = models.ForeignKey(Employer, on_delete=models.CASCADE)
+    worker_id = models.ForeignKey(Worker, on_delete=models.CASCADE)
+    worker_phone_no = models.IntegerField()
+
+    applicant_status = models.CharField(max_length=20, choices=APPROVAL_STATUS, default='pending')
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.applicant_status

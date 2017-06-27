@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load custom_humanize %}
+
 {% block title %}
     View Jobs
 {% endblock %}
@@ -27,11 +29,189 @@
     <div class="container">
 
         <div class="col-md-12" style="margin-bottom: 60px">
+            <div class="card" id="searchCard" style="margin-bottom: 40px; display: none;">
+                    <div class="card-header">
+                        <h3>Search</h3>
+                    </div>
+
+
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-selectJob">
+                                        <img width="32px" src="{% static 'images/search/briefcase.svg' %}"
+                                             alt="Jobs">
+                                    </span>
+                                    <select class="form-control" id="selectJob" aria-describedby="basic-selectJob">
+                                        <option value="INIT">Select Job</option>
+                                        <option>House Help</option>
+                                        <option>Tailor</option>
+                                        <option>Lumberjack</option>
+                                        <option>House Cleaner</option>
+                                        <option>Electrician</option>
+                                        <option>Plumber</option>
+                                        <option>Nanny</option>
+                                        <option>Fumigator</option>
+                                        <option>Gardener</option>
+                                        <option>Cook</option>
+                                        <option>Chauffeur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-selectCounty">
+                                        <img width="40px" src="{% static 'images/search/011-map.svg' %}"
+                                             alt="County">
+                                    </span>
+                                    <select class="form-control" id="selectCounty"
+                                            aria-describedby="basic-selectCounty">
+                                        <option value="INIT">Select County</option>
+                                        {% for county in counties %}
+                                        <option value="{{county.id}}">{{county.county_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-selectConstituency">
+                                        <img width="40px" src="{% static 'images/search/011-map.svg' %}"
+                                             alt="Constituency">
+                                    </span>
+                                    <select class="form-control" id="selectConstituency"
+                                            aria-describedby="basic-selectConstituency">
+                                        <option value="INIT">Select Constituency</option>
+
+                                        {% for constituency in constituencies %}
+                                        <option value="{{constituency.id}}">
+                                            {{constituency.constituency_name}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-3 pull-right">
+                                <a href="#" onclick="getSearchDetails()" class="btn btn-outline-info btn-lg btn-block"
+                                   style="border: 1px solid #2196f3;">Search</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             <div class="row" style="margin-bottom: 20px">
                 <div class="col-md-9">
                     <div class="row" style="margin-bottom: 20px">
+                    <div class="col-12">
+                        <div class="float-right">
+                            <a class="btn btn-info" style="color:white;" onclick="reloadPage()">
+                                Reload
+                            </a>
+                            <a class="btn btn-success " style="color:white"
+                               onclick="toggleVisibility(document.getElementById('searchCard'))">
+                                Search for Job
+                            </a>
+                        </div>
+                        <script>
+                    //For getting CSRF token
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie != '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = jQuery.trim(cookies[i]);
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    function post(data, url) {
+
+
+                        var request = new XMLHttpRequest();
+
+                        request.open("POST", url, true);
+
+                        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        // Only send the token to relative URLs i.e. locally.
+                        request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                        request.onreadystatechange = function () {
+                            console.log("request.readyState = " + request.readyState + "request.status = " + request.status);
+                            if (request.readyState == 4 && request.status == 200) {
+
+                                /*var obj = JSON.parse(request.responseText);
+
+                                 document.getElementById("message").innerHTML = "";
+                                 document.getElementById("update_message").innerHTML = alert(obj.data);*/
+
+
+                                console.log("posted the data");
+
+                                window.location = "/job_search/";
+                            }
+
+                        };
+
+                        request.send(data);
+                    }
+
+
+                    function getSearchDetails() {
+                        var url = "/job_search_details/";
+
+                        /*getting the landlord name from dropdown list*/
+                        var selectConstituencyObj = document.getElementById("selectConstituency");
+                        var constituency = selectConstituencyObj.options[selectConstituencyObj.selectedIndex].value;
+
+
+                        /*getting the landlord name from dropdown list*/
+                        var selectCountyObj = document.getElementById("selectCounty");
+                        var county = selectCountyObj.options[selectCountyObj.selectedIndex].value;
+
+
+                        /*getting the country from dropdown list*/
+                        var selectJobObj = document.getElementById("selectJob");
+                        var jobs = selectJobObj.options[selectJobObj.selectedIndex].text;
+
+                        console.log(jobs);
+                        console.log(constituency);
+                        console.log(county);
+
+                        var data = "&jobs=" + jobs +
+                            "&constituency=" + constituency +
+                            "&county=" + county;
+
+                        post(data, url);
+                    }
+
+                </script>
+                        <script>
+
+                    var toggleVisibility = function (element) {
+                        if (element.style.display == 'block') {
+                            element.style.display = 'none';
+                        } else {
+                            element.style.display = 'block';
+                        }
+                    };
+
+                    function reloadPage() {
+                        window.location.href = "/view_job/";
+                    }
+                </script>
+                    </div>
+                </div>
+                    <div class="row" >
                         {% for job in jobs %}
-                        <div class="col-md-4">
+                        <div class="col-md-4" style="margin-bottom: 40px">
                             <div class="card">
                               <div class="card-block">
                                   <a href="{{job.get_absolute_url}}">
@@ -39,105 +219,37 @@
                                       <h3 class="card-title">{{ job.job_title}}</h3>
                                       <p class="card-text">{{job.constituency_id}}, {{job.county_id}}</p>
                                       <hr/>
-                                    <p class="card-text">Today</p>
+                                    <p class="card-text">{{job.date_created |humanizeTimeDiff }}</p>
                                   </a>
                               </div>
                             </div>
                         </div>
+                        {% empty %}
+                    <div class="col-lg-12" style="margin-bottom: 60px">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <h4 class="card-title text-danger">
+                                    0 Jobs Found
+                                </h4>
+                                <hr>
+                            </div>
+
+                            <div class="card-block">
+                                <img class="img-fluid center" width="350px" style="margin-top: 60px;margin-bottom: 60px" src="{% static 'images/my_profile/089-jobs.svg' %}"
+                                 alt="No Jobs Image">
+                                <h4 class="card-title text-info" style="padding: 60px">Sorry, there are no Jobs matching your search criteria. Kindly click on the <strong>RELOAD</strong> button to view the available Jobs.</h4>
+
+
+                                <!--<p class="card-text"><span class="profile_text_titles">Location:</span> Nairobi, Kenya.
+                                </p>-->
+                                <!--<p class="card-text"><span class="profile_text_titles">Services:</span> Plumbing and
+                                    Chief Chef</p>-->
+                            </div>
+
+                        </div>
+                    </div>
                         {% endfor %}
-                        <!--<div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">Gardener</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 day ago</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Help</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 week ago</p>
-                              </div>
-                            </div>
-                        </div>-->
                     </div>
-                    <!--<div class="row" style="margin-bottom: 20px">
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Fumigators</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">Today</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">Gardener</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 day ago</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Help</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 week ago</p>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 20px">
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Fumigators</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">Today</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">Gardener</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 day ago</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Help</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 week ago</p>
-                              </div>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
                 <div class="col-md-3">
                 <div class="card">
@@ -165,7 +277,7 @@
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -199,7 +311,7 @@
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">

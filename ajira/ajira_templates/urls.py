@@ -44,13 +44,20 @@ urlpatterns = [
     url(r'^add_experience/$', views.add_experience, name='add_experience'),
     url(r'^ajiriwa_profile/(?P<slug>[-\w]+)/$', views.ajiriwa_profile, name='ajiriwa_profile'),
     url(r'^my_profile/(?P<slug>[-\w]+)/$', views.my_profile, name='my_profile'),
+
     url(r'^my_notifications/(?P<slug>[-\w]+)/$', views.my_notifications, name='my_notifications'),
+
+    url(r'^ajiriwa_search_name/$', views.ajiriwa_search_name, name='ajiriwa_search_name'),
+    url(r'^search_ajiriwa_by_name/$', views.search_ajiriwa_by_name, name='search_ajiriwa_by_name'),
 
     # Job Page
     url(r'^post_job/$', views.post_job, name='post_job'),
     url(r'^post_job_details/$', views.post_job_details, name='post_job_details'),
     url(r'^view_job/$', views.view_job, name='view_job'),
     url(r'^view_job_profile/(?P<slug>[-\w]+)/$', views.single_job, name='view_job_profile'),
+    url(r'^job_search_details/$', views.job_search_details, name='job_search_details'),
+    url(r'^job_search/$', views.job_search, name='job_search'),
+    url(r'^applicant_details/$', views.applicant_details, name='applicant_details'),
     # Recommendations Page
     url(r'^recommend/$', views.recommend, name='recommend'),
     url(r'^recommendee_details/$', views.recommendee_details, name='recommendee_details'),

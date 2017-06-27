@@ -125,12 +125,12 @@ My Profile
 
 
                                     <li class="media">
-                                        <img class="d-flex mr-3" width="100px" src="{{ employees.worker_avatar.url }}" alt="Generic placeholder image">
+                                        <img class="d-flex mr-3" width="100px" src="{{ recommendation.employer_id.employer_avatar.url }}" alt="Generic placeholder image">
                                         <div class="media-body" style="margin-left:15px">
                                             <h4 class="mt-0 mb-1">{{ recommendation.employer_id }}</h4>
                                             <h6 class="mt-0 mb-1">Relationship:&emsp;&emsp;&emsp; {{ recommendation.relationship }}</h6>
                                             <h6 class="mt-0 mb-1">Skills or Position:&emsp;&emsp;&nbsp;{{recommendation.position_or_skills_at_that_time }}</h6>
-                                            "{{recommendation.remark }}"
+                                            <i>"{{recommendation.remark }}"</i>
                                         </div>
                                     </li>
 
@@ -170,7 +170,6 @@ My Profile
 
 
 
-                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                             </div>
                         </li>
                         {% endif %}
@@ -202,7 +201,7 @@ My Profile
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">

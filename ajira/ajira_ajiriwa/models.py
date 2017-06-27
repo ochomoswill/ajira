@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 # Create your models here.
 
 APPROVAL_STATUS = (('approved', 'APPROVED'), ('pending', 'PENDING'),('declined', 'DECLINED'),)
+MESSAGE_STATUS = (('read', 'READ'), ('unread', 'UNREAD'))
 
 
 class Worker(models.Model):
@@ -70,4 +71,17 @@ class Experience(models.Model):
 
     def __str__(self):
         return self.job_title
+
+
+class WorkerNotification(models.Model):
+    worker_id = models.ForeignKey(Worker, on_delete=models.CASCADE)
+    message = models.TextField()
+    sender = models.CharField(max_length=50)
+    message_status = models.CharField(max_length=50, choices=MESSAGE_STATUS, default='UNREAD')
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_received = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.message
+
 

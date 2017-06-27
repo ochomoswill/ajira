@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'ajira_ajiriwa',
     'ajira_mwajiri',
     'ajira_jobs',
@@ -137,11 +138,13 @@ MEDIA_URL = '/ajira_media/'
 
 
 #Sendgrip
-EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_API_KEY = "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"
+# EMAIL_BACKEND = "sgbackend.SendGridBackend"
+# SENDGRID_API_KEY = "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"
 
-EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.webfaction.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'ajira@auranaturals.webfactional.com'
+EMAIL_HOST_PASSWORD = '4uranatural5ke@2011'
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'ajira@auranaturals.webfactional.com'
+SERVER_EMAIL = 'ajira@auranaturals.webfactional.com'

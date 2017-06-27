@@ -214,7 +214,7 @@ My Profile
                                         <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
-                                                <h4 class="timeline-title">{{experience.job_title}}</h4>
+                                                <h4 style="text-transform: capitalize;" class="timeline-title">{{experience.job_title}}</h4>
                                                 <p>
                                                     <small class="text-muted"><i class="glyphicon glyphicon-time"></i>
                                                         {{experience.from_date}} - {{experience.to_date}}
@@ -245,15 +245,13 @@ My Profile
 
 
                                     <li class="media">
-                                        <img class="d-flex mr-3" width="100px" src="{{ employees.worker_avatar.url }}"
+                                        <img class="d-flex mr-3" width="100px" src="{{ recommendation.employer_id.employer_avatar.url }}"
                                              alt="Generic placeholder image">
                                         <div class="media-body" style="margin-left:15px">
                                             <h4 class="mt-0 mb-1">{{ recommendation.employer_id }}</h4>
-                                            <h6 class="mt-0 mb-1">Relationship:&emsp;&emsp;&emsp; {{
-                                                recommendation.relationship }}</h6>
-                                            <h6 class="mt-0 mb-1">Skills or Position:&emsp;&emsp;&nbsp;{{recommendation.position_or_skills_at_that_time
-                                                }}</h6>
-                                            "{{recommendation.remark }}"
+                                            <h6 class="mt-0 mb-1">Relationship:&emsp;&emsp;&emsp; {{ recommendation.relationship }}</h6>
+                                            <h6 class="mt-0 mb-1">Skills or Position:&emsp;&emsp;&nbsp;{{recommendation.position_or_skills_at_that_time }}</h6>
+                                            <i>"{{recommendation.remark }}"</i>
                                         </div>
                                     </li>
 

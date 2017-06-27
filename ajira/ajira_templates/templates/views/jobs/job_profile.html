@@ -3,140 +3,65 @@
 {% load static %}
 
 {% block title %}
-    View Jobs
+View Jobs
 {% endblock %}
 
+{% load custom_humanize %}
 
 {% block content %}
+<script src="{% static 'js/posts/post_apply_job.js' %}"></script>
 
-
-    <div class="jumbotron jumbotron-fluid text-center">
-        <div class="container">
-            <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">View Jobs</h1>
-
-        </div>
-    </div>
-
-    <style>
-        .img-thumbnail
-        {
-            width:180px;
-        }
-    </style>
-
+<div class="jumbotron jumbotron-fluid text-center">
     <div class="container">
+        <h1 class="display-3" style="text-align: center; font-weight: 300; margin-top: 40px">Job Profile</h1>
 
-        <div class="col-md-12" style="margin-bottom: 60px">
-            <div class="row" style="margin-bottom: 20px">
-                <div class="col-md-9">
-                    <div class="row" style="margin-bottom: 20px">
-                        <div class="col-md-12">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">{{ job.job_title}}</h3>
-                                    <p class="card-text">{{job.constituency_id}}, {{job.county_id}}</p>
-                                    <p class="card-text">{{job.job_description}}</p>
-                                    <hr/>
-                                  <p class="card-text">Today</p>
-                              </div>
-                            </div>
-                        </div>
-                        <!--<div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">Gardener</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 day ago</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Help</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 week ago</p>
-                              </div>
-                            </div>
-                        </div>-->
-                    </div>
-                    <!--<div class="row" style="margin-bottom: 20px">
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Fumigators</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">Today</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">Gardener</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 day ago</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Help</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 week ago</p>
-                              </div>
+    </div>
+</div>
+
+<style>
+    .img-thumbnail {
+        width: 180px;
+    }
+</style>
+
+<div class="container">
+
+    <div class="col-md-12" style="margin-bottom: 60px">
+        <div class="row" style="margin-bottom: 20px">
+            <div class="col-md-9">
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="img-thumbnail" style="margin-bottom: 20px"
+                                             src="/ajira_static/images/error/jobs_bright_blue.png"/>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3 class="card-title">{{ job.job_title}}</h3>
+                                        <p class="card-text">{{job.constituency_id}}, {{job.county_id}}</p>
+                                        <button style="color:white; background-color:#325696" data-toggle="modal" data-target="#myModal"
+                                           class="btn btn-success">Apply</button>
+
+                                        <script>
+                                            function showModal() {
+                                                $('#myModal').modal("show");
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <p class="card-text">{{job.job_description}}</p>
+                                <hr/>
+                                <p class="card-text">{{job.date_created|humanizeTimeDiff}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-bottom: 20px">
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Fumigators</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">Today</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">Gardener</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 day ago</p>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                              <div class="card-block">
-                                  <img class="img-thumbnail" style="margin-bottom: 20px" src="/ajira_static/images/error/jobs_bright_blue.png"/>
-                                    <h3 class="card-title">House Help</h3>
-                                    <p class="card-text">Nairobi, Kenya</p>
-                                    <hr/>
-                                  <p class="card-text">1 week ago</p>
-                              </div>
-                            </div>
-                        </div>
-                    </div>-->
+
                 </div>
-                <div class="col-md-3">
+            </div>
+            <div class="col-md-3">
                 <div class="card">
                     {% if request.session.member_usertype == "ajiriwa" %}
                     <ul class="list-group list-group-flush">
@@ -157,12 +82,13 @@
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/my_notifications/{{ request.session.member_slug }}/" style="width:100%;background: none"
+                            <a href="/my_notifications/{{ request.session.member_slug }}/"
+                               style="width:100%;background: none"
                                class="border-0 back-link-hover">
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -192,11 +118,12 @@
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/my_notifications/{{ request.session.member_slug }}/" class="border-0 back-link-hover" style="background: none;width:100%;background: none">
+                            <a href="/my_notifications/{{ request.session.member_slug }}/"
+                               class="border-0 back-link-hover" style="background: none;width:100%;background: none">
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -227,16 +154,68 @@
                 </div>
             </div>
 
-            </div>
-
-
-            <div class="row" style="margin-bottom: 60px; margin-top: 60px">
-                <div class="offset-lg-4 col-lg-4 text-center">
-                    <a href="#" style="color: #2f5597;text-transform: uppercase; font-weight: 500; font-size: 21px">Browse More Jobs</a>
-                </div>
-            </div>
         </div>
+
 
     </div>
 
+</div>
+
+<!-- Modal -->
+<div >
+    <div  class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Apply for Job!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <hr>
+                <div class="modal-body">
+                    <div id="message"></div>
+                            <div id="update_message"></div>
+
+                    <div style="margin-bottom: 40px" class="media">
+                    {% for worker in workers %}
+
+                    <li  class="media">
+                                        <img class="d-flex align-self-center mr-3" width="100px" src="{{ worker.worker_avatar.url }}"
+                                             alt="User Profile Image">
+                                        <div class="media-body" style="margin-left:15px">
+                                            <h4 class="mt-0 mb-1">{{worker.worker_name}}</h4>
+                                            <h5 class="mt-0 mb-1">{{worker.skills}}</h5>
+                                        </div>
+                                    </li>
+
+
+                        </div>
+                    <form method="post">
+                                    {% csrf_token %}
+                                    <div id="divEmailAddress" class="form-group">
+                                        <label style="font-size: 18px" for="emailAddress">Email address:</label>
+                                        <input type="email" class="form-control" id="emailAddress" value="{{worker.email_address}}" aria-describedby="emailHelp" placeholder="Email Address">
+                                        <div id="emailAddress_validate_text" class="form-control-feedback"></div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label style="font-size: 18px" for="phoneNo">Phone Number:</label>
+                                        <input type="text" class="form-control" id="phoneNo" placeholder="Phone Number">
+                                    </div>
+                                </form>
+                                        {% endfor %}
+
+                    <p>The job poster will get an email with your contact information and link to your profile</p>
+                    <a style="color:#325696; font-weight: bold;" href="/my_profile/{{ request.session.member_slug }}/">Review Profile</a>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btnWithJobID" value="{{ job.id}}" class="btn btn-info" onclick="job_application()" style="color:white; background-color:#325696">Submit Application</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 {% endblock %}

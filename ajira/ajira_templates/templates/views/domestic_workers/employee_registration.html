@@ -29,7 +29,10 @@
     <style>
         body {
             /*height: 100vh;*/
-            background-color: lightgrey;
+            /*background-color: lightgrey;*/
+            background-image:url("../../../../ajira_static/images/human-networks1.jpg");
+            background-size:cover;
+            opacity:0.9;
         }
 
     </style>
@@ -42,7 +45,7 @@
             <div class="col-md-12" style="padding-top:10%;margin-bottom: 60px">
 
                 <div class="row">
-                    <div class="offset-md-1 col-md-10">
+                    <div class="offset-md-2 col-md-8">
                         <center>
                             <div class="btn-group text-center" style="margin-bottom: 60px" data-toggle="buttons">
                                 <label id="ajiriwa" class="btn btn-primary active">
@@ -91,6 +94,9 @@
                                                 <label style="font-size: 18px" for="inputPassword">Password:</label>
                                                 <input type="password" class="form-control" id="inputPassword"
                                                        placeholder="Password">
+                                                <small id="passwordHelpInline" class="text-muted">
+      Must be at least 8 characters long.
+    </small>
                                                 <div id="inputPassword_validate_text"
                                                      class="form-control-feedback"></div>
                                             </div>

@@ -21,6 +21,7 @@ Ajiriwa
 </ul>
 
 <script>
+
     function assignAjiriwaActive() {
         document.getElementById('ajiriwa').classList.add('active');
         document.getElementById('ajiriwa_profiles').classList.remove('active');
@@ -29,6 +30,40 @@ Ajiriwa
         document.getElementById('ajiriwa_profiles').classList.add('active');
         document.getElementById('ajiriwa').classList.remove('active');
     }
+
+
+    $(document).ready(function () {
+        document.getElementById('searchCard').style.display = 'none';
+
+
+        if (location.hash) {
+            $("a[href='" + location.hash + "']").tab("show");
+            setTabActive();
+        }
+        $(document.body).on("click", "a[data-toggle]", function (event) {
+            location.hash = this.getAttribute("href");
+        });
+    });
+
+    $(window).on("popstate", function () {
+        var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+        $("a[href='" + anchor + "']").tab("show");
+        setTabActive();
+
+
+    });
+
+    function setTabActive()
+    {
+        if (location.hash == "#profile") {
+            assignProfileActive();
+        }
+        else if (location.hash == "#home") {
+            assignAjiriwaActive();
+        }
+    }
+
+
 </script>
 
 
@@ -55,10 +90,10 @@ Ajiriwa
 
             <div class="col-md-12" style="padding: 20px; margin-top: 60px; margin-bottom: 60px;">
 
-                <h1 class="text-center" style="margin-bottom: 60px; font-weight: 300">Why Ajira is right for you?</h1>
+                <h1 class="text-center" style="font-weight: 300">Why Ajira is right for you?</h1>
 
                 <div class="row ajira-objectives">
-                    <div class="col-md-6 ajira-objectives-text">
+                    <div class="offset-md-1 col-md-10 ajira-objectives-text">
                         <ul class="list-unstyled">
                             <li class="media">
                                 <img style="width:25px; margin-top: 5px" class="d-flex mr-3"
@@ -66,7 +101,7 @@ Ajiriwa
                                      alt="Generic placeholder image">
                                 <div class="media-body">
                                     <h3 class="mt-0 mb-1" style="font-weight: 300">Gain access to a large network of new
-                                        customers </h3>
+                                        employers. </h3>
                                 </div>
                             </li>
                             <li class="media my-4">
@@ -75,7 +110,7 @@ Ajiriwa
                                      alt="Generic placeholder image">
                                 <div class="media-body">
                                     <h3 class="mt-0 mb-1" style="font-weight: 300">Build up your professional profile
-                                        through customer feedback and gain an online personal resume that grows with
+                                        through previous employer feedback and gain an online personal resume that grows with
                                         each job you do</h3>
                                 </div>
                             </li>
@@ -84,24 +119,15 @@ Ajiriwa
                                      src="/ajira_static/images/workers/success%20(1).png"
                                      alt="Generic placeholder image">
                                 <div class="media-body">
-                                    <h3 class="mt-0 mb-1" style="font-weight: 300">Participate in free training courses
-                                        covering topics that will help you get better at your job</h3>
+                                    <h3 class="mt-0 mb-1" style="font-weight: 300">Gain access to a large number of diverse jobs posted by our large network of employers and even apply for them. </h3>
                                 </div>
                             </li>
-                            <li class="media">
-                                <img style="width:25px; margin-top: 5px" class="d-flex mr-3"
-                                     src="/ajira_static/images/workers/success%20(1).png"
-                                     alt="Generic placeholder image">
-                                <div class="media-body">
-                                    <h3 class="mt-0 mb-1" style="font-weight: 300">We use the feedback you submit to
-                                        monitor the employer network, we value your safety and satisfaction too</h3>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
-                    <div class="col-lg-6 img-right">
+                    <!--<div class="col-lg-6 img-right">
                         <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
@@ -112,27 +138,27 @@ Ajiriwa
                     <div class="col-lg-6 ajira-objectives-text">
                         <h2>Create your Professional Profile</h2>
                         <p>Create your own personalized Professional Profile to promote your unique work experience,
-                            education, credentials, skills and availability. eAdvocate Verifies Credentials to provide
-                            Clients with additional peace of mind when considering you for a Job. The more detailed your
-                            profile, the more likely Clients will hire you.</p>
+                            skills and availability. Ajira verifies credentials to provide
+                            employers with additional peace of mind when considering you for a job. The more detailed your
+                            profile, the more likely employers will hire you.</p>
                         <a style="color: #2f5597; text-transform: uppercase; font-weight: 600" href="#">Start Your
                             Profile</a>
                     </div>
                     <div class="col-lg-6 img-right">
-                        <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+                        <img class="img-fluid" src="/ajira_static/images/workers/createAccount.png"/>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="row ajira-objectives">
                     <div class="col-lg-6 img-left">
-                        <img class="img-fluid" src="/ajira_static/images/image_placeholder.jpg"/>
+                        <img class="img-fluid" src="/ajira_static/images/workers/browseJobs.png"/>
                     </div>
                     <div class="col-lg-6 ajira-objectives-text">
                         <h2>Browse Job Opportunities</h2>
-                        <p>Browse Requests for Care (RFCs) in your area and begin delivering care. eAdvocate allows you
-                            to search all current job opportunites in your area by: skills, location, schedule and pay
-                            rates. eAdvocate also alerts you to jobs that may fit your skills and experience.</p>
+                        <p>Browse posted jobs in your area of speciality. Ajira allows you
+                            to search all current job opportunites in your area by: skills and location, schedule and pay
+                            rates. Ajira also alerts you to jobs that may fit your skills and experience.</p>
                         <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#">Browse Jobs</a>
                     </div>
                 </div>
@@ -140,9 +166,9 @@ Ajiriwa
             <div class="col-lg-12" style="margin-bottom: 60px">
                 <div class="row ajira-objectives">
                     <div class="col-lg-6 ajira-objectives-text">
-                        <h2>Contract Directly with Clients</h2>
-                        <p>You choose the jobs and Clients you want to work with. You contract directly with Clients to
-                            agree on the scope of care, hourly rate and schedule.</p>
+                        <h2>Communicate directly with employers</h2>
+                        <p>You choose the jobs and employers you want to work with. You contract directly with employers to
+                            agree on the job, rate and schedule.</p>
                         <a style="color: #2f5597;text-transform: uppercase; font-weight: 600" href="#">Learn More</a>
                     </div>
                     <div class="col-lg-6 img-right">
@@ -183,8 +209,8 @@ Ajiriwa
         <div class="container">
 
 
-            <div class="col-lg-12" style="padding: 60px">
-                <div class="card" style="margin-bottom: 40px">
+            <div class="col-lg-12" style="">
+                <div class="card" id="searchCard" style="margin-bottom: 40px; display: none;">
                     <div class="card-header">
                         <h3>Search</h3>
                     </div>
@@ -196,7 +222,7 @@ Ajiriwa
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-selectSkill">
                                         <img width="40px" src="{% static 'images/my_profile/072-skills-1.svg' %}"
-                                                                                            alt="Skills">
+                                             alt="Skills">
                                     </span>
                                     <select class="form-control" id="selectSkill" aria-describedby="basic-selectSkill">
                                         <option value="INIT">Select Skill</option>
@@ -229,7 +255,7 @@ Ajiriwa
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-selectCounty">
                                         <img width="40px" src="{% static 'images/search/011-map.svg' %}"
-                                                                                            alt="County">
+                                             alt="County">
                                     </span>
                                     <select class="form-control" id="selectCounty"
                                             aria-describedby="basic-selectCounty">
@@ -253,7 +279,7 @@ Ajiriwa
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-selectConstituency">
                                         <img width="40px" src="{% static 'images/search/011-map.svg' %}"
-                                                                                            alt="Constituency">
+                                             alt="Constituency">
                                     </span>
                                     <select class="form-control" id="selectConstituency"
                                             aria-describedby="basic-selectConstituency">
@@ -309,7 +335,7 @@ Ajiriwa
                         return cookieValue;
                     }
 
-                    function post(data, url) {
+                    function post(data, url, next_url) {
 
 
                         var request = new XMLHttpRequest();
@@ -330,8 +356,8 @@ Ajiriwa
 
 
                                 console.log("posted the data");
-
-                                window.location = "/ajiriwa_search/";
+                                //window.location = "/ajiriwa_search/#profile";
+                                window.location = next_url;
                             }
 
                         };
@@ -365,15 +391,77 @@ Ajiriwa
                             "&constituency=" + constituency +
                             "&county=" + county;
 
-                        post(data, url);
+                        post(data, url, "/ajiriwa_search/#profile");
                     }
 
+
+                    function getProfileByName() {
+                        var url = "/ajiriwa_search_name/";
+
+                        /*getting the landlord name from dropdown list*/
+                        var ajiriwa_name = document.getElementById("namesearchField").value;
+
+
+                        console.log(ajiriwa_name);
+
+                        var data = "&ajiriwa_name=" + ajiriwa_name;
+
+                        post(data, url, "/search_ajiriwa_by_name/#profile");
+                    }
+
+
+
                 </script>
+
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-12">
+                        <div class="float-right">
+                            <a class="btn btn-info" style="color:white;" onclick="reloadPage()">
+                                Reload
+                            </a>
+                            <a class="btn btn-success " style="color:white"
+                               onclick="toggleVisibility(document.getElementById('searchCard'))">
+                                Search for Ajiriwa
+                            </a>
+                            <!--<form class="form-inline">
+                              <input class="form-control" type="text" placeholder="Search by Name">
+                              <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-12">
+                        <div class="float-right">
+                            <form class="form-inline">
+                              <input class="form-control" id="namesearchField" type="text" placeholder="Search by Name">
+                              <button class="btn btn-outline-success" onclick="getProfileByName()">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+
+                    var toggleVisibility = function (element) {
+                        if (element.style.display == 'block') {
+                            element.style.display = 'none';
+                        } else {
+                            element.style.display = 'block';
+                        }
+                    };
+
+                    function reloadPage() {
+                        window.location.href = "/ajiriwa/#profile"
+                    }
+                </script>
+
+
 
 
                 <div class="row">
                     {% for employee in employees %}
-                    <div class="col-lg-4" style="margin-bottom: 60px">
+                    <div class="col-lg-3" style="margin-bottom: 60px">
                         <div class="card">
                             <img class="card-img-top img-thumbnail" width="500px" src="{{ employee.worker_avatar.url }}"
                                  alt="Card image cap">
@@ -397,13 +485,38 @@ Ajiriwa
                                 <!--<p class="card-text"><span class="profile_text_titles">Services:</span> Plumbing and
                                     Chief Chef</p>-->
                             </div>
-                            <hr style="border: 1px solid #0A246A">
                             <div class="card-footer">
                                 <a style="background-color: #2f5597;" class="btn btn-primary btn-lg"
                                    href="{{employee.get_absolute_url}}" role="button">See Full Profile</a>
                             </div>
                         </div>
                     </div>
+
+                    {% empty %}
+                    <div class="col-lg-12" style="margin-bottom: 60px">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <h4 class="card-title text-danger">
+                                    0 Ajiriwas Found
+                                </h4>
+                                <hr>
+                            </div>
+
+                            <div class="card-block">
+                                <img class="img-fluid center" width="350px" style="margin-top: 60px;margin-bottom: 60px" src="{% static 'images/search/worker.svg' %}"
+                                 alt="No Ajiriwa Image">
+                                <h4 class="card-title text-info" style="padding: 60px">Sorry, there are no Ajiriwas matching your search criteria. Kindly click on the <strong>RELOAD</strong> button to view the present Ajiriwas.</h4>
+
+
+                                <!--<p class="card-text"><span class="profile_text_titles">Location:</span> Nairobi, Kenya.
+                                </p>-->
+                                <!--<p class="card-text"><span class="profile_text_titles">Services:</span> Plumbing and
+                                    Chief Chef</p>-->
+                            </div>
+
+                        </div>
+                    </div>
+
                     {% endfor %}
 
                 </div>

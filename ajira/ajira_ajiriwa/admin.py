@@ -13,4 +13,8 @@ class WorkerAdmin(admin.ModelAdmin):
     # fields = ('image_tag',)
     # readonly_fields = ('image_tag',)
 
-admin.site.register(Experience)
+
+@admin.register(Experience)
+class ExperienceAdmin(admin.ModelAdmin):
+    list_display = ('worker_id', 'job_title', 'job_location', 'from_date', 'to_date', 'approval_status','date_created')
+    list_filter = ('worker_id', 'job_title', 'job_location', 'approval_status')

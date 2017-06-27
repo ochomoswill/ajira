@@ -43,7 +43,7 @@
                                 <div class="row">
                                     {% for worker in workers %}
 
-                                    <div class="col-md-12" style="margin-top: 20px;margin-bottom: 40px">
+                                    <div class="col-md-12" style="margin-top: 20px;margin-bottom: 20px">
 
                                         <ul class="list-unstyled">
                                     <hr>
@@ -54,6 +54,7 @@
                                              alt="Generic placeholder image">
                                         <div class="media-body" style="margin-left:15px">
                                             <h4 class="mt-0 mb-1">{{worker.worker_name}}</h4>
+                                            <h5 class="mt-0 mb-1">{{worker.skills}}</h5>
                                             <!--<h6 class="mt-0 mb-1">Relationship:&emsp;&emsp;&emsp; {{
                                                 recommendation.relationship }}</h6>
                                             <h6 class="mt-0 mb-1">Skills or Position:&emsp;&emsp;&nbsp;{{recommendation.position_or_skills_at_that_time
@@ -64,10 +65,7 @@
 
 
                                 </ul>
-                                        <!--<hr style="border: 1px solid #0A246A">-->
-                                        <!--<img class="img-thumbnail" style="margin-bottom: 10px" width="80px" src="{{ worker.worker_avatar.url }}">
-                                        <h4>{{worker.worker_name}}</h4>-->
-                                        <!--<hr style="border: 1px solid #0A246A">-->
+
                                     </div>
 
                                     {% endfor %}
@@ -98,28 +96,10 @@
 
                                     </select>
                                 </div>
-                                <!--<div id="divEmployerID" class="form-group">-->
-                                    <!--<label style="font-size: 18px" for="employerID">Employer ID:</label>-->
-                                    <!--<input type="number" class="form-control" id="employerID" placeholder="Employer ID">-->
-                                <!--</div>-->
-                                <!--<div id="divWorkerName" class="form-group">
-                                    <label style="font-size: 18px" for="workerName">Worker Name:</label>
-                                    <select class="form-control" id="workerName">
-                                        <option value="INIT" >Select Recommendee</option>
-
-                                        {% for worker in workers %}
-                                            <option value="{{worker.id}}">{{worker.worker_name}}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>-->
                                 <div class="form-group">
                                     <label style="font-size: 18px" for="remark">Remark:</label>
                                     <textarea class="form-control" id="remark"></textarea>
                                 </div>
-                                <!--<div class="form-group">
-                                    <label style="font-size: 18px" for="tag">Tag:</label>
-                                    <input type="text" class="form-control" id="tag" placeholder="Tag">
-                                </div>-->
                             </form>
                         </div>
                         <div class="card-footer">
@@ -152,7 +132,7 @@
                                 <img width="32px" style="margin-right: 10px"
                                      src="{% static 'images/my_profile/010-chat-1.svg' %}">
                                 View Notifications
-                                <span class="badge badge-default badge-pill float-right">2</span>
+                                <span class="badge badge-default badge-pill badge-danger float-right">{{ notifications.count }}</span>
                             </a>
                         </li>
                         <li class="list-group-item">
@@ -184,6 +164,7 @@
             </div>
         </div>
 
+    </div>
     </div>
 
 {% endblock %}

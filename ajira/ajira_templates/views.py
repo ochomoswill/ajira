@@ -447,7 +447,8 @@ def simple_upload(request):
                 filename = fs.save(myfile.name, myfile)
                 uploaded_file_url = fs.url(filename)
                 print(uploaded_file_url)
-                Worker.objects.filter(email_address=request.user).update(worker_avatar=uploaded_file_url)
+                new_url = uploaded_file_url.replace('/ajira_media','')
+                Worker.objects.filter(email_address=request.user).update(worker_avatar=new_url)
                 return redirect('/edit_profile/' + request.session['member_slug'] + '/',
                                 {'uploaded_file_url': uploaded_file_url})
         elif request.session["member_usertype"] == "mwajiri":
@@ -458,7 +459,8 @@ def simple_upload(request):
                 filename = fs.save(myfile.name, myfile)
                 uploaded_file_url = fs.url(filename)
                 print(uploaded_file_url)
-                Employer.objects.filter(email_address=request.user).update(employer_avatar=uploaded_file_url)
+                new_url = uploaded_file_url.replace('/ajira_media','')
+                Employer.objects.filter(email_address=request.user).update(employer_avatar=new_url)
                 return redirect('/edit_mwajiri_profile/' + request.session['member_slug'] + '/',
                                 {'uploaded_file_url': uploaded_file_url})
     return redirect('/edit_mwajiri_profile/' + request.session['member_slug'] + '/')
@@ -675,15 +677,16 @@ def recommend(request):
     elif request.session["member_usertype"] == "ajiriwa":
         return redirect('/require_employerloggedin')
     elif request.user.is_authenticated() and request.session["member_usertype"] == "mwajiri":
-        if request.session['recommendee_email']:
-            recommendee_email = request.session['recommendee_email']
-            workers = Worker.objects.filter(email_address=recommendee_email)
-            current_recommendee_id = Worker.objects.filter(email_address=recommendee_email).values_list('id', flat=True)[0]
-            request.session['current_recommendee_id'] = current_recommendee_id
-            experiences = Experience.objects.filter(worker_id=current_recommendee_id)
-            template = 'views/recommendations/give_recommendations.html'
-            context = {'workers': workers, "experiences":experiences}
-            return render(request,template,context)
+        if 'recommendee_email' in request.session:
+            if request.session['recommendee_email']:
+                recommendee_email = request.session['recommendee_email']
+                workers = Worker.objects.filter(email_address=recommendee_email)
+                current_recommendee_id = Worker.objects.filter(email_address=recommendee_email).values_list('id', flat=True)[0]
+                request.session['current_recommendee_id'] = current_recommendee_id
+                experiences = Experience.objects.filter(worker_id=current_recommendee_id)
+                template = 'views/recommendations/give_recommendations.html'
+                context = {'workers': workers, "experiences":experiences}
+                return render(request,template,context)
         workers = Worker.objects.all()
         template = 'views/recommendations/give_recommendations.html'
         context = {'workers': workers}

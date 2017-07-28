@@ -26,9 +26,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b+6-(xm%nv41)4*=i3j#t(4-ik#&ncs*_go_7b)a!woz+&6x*u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'ochomoswill.pythonanywhere.com',
+    ]
 
 
 # Application definition
@@ -93,11 +95,11 @@ WSGI_APPLICATION = 'ajira.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ajira_db',
-        'HOST': 'localhost',
+        'NAME': 'ochomoswill$ajira_db',
+        'HOST': 'ochomoswill.mysql.pythonanywhere-services.com',
         'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'toor',
+        'USER': 'ochomoswill',
+        'PASSWORD': 'ajira_5ky302ld',
     }
 }
 
